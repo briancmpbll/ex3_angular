@@ -3,11 +3,6 @@ app = angular.module('ex3-gen', [
   'templates'
 ])
 
-app.controller('TestController', ['$scope',
-  ($scope)->
-    $scope.test = "Hello World!"
-])
-
 app.config(['$stateProvider', '$urlRouterProvider',
   ($stateProvider, $urlRouterProvider)->
     $stateProvider
