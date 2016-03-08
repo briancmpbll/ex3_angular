@@ -1,6 +1,6 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
-    <a href="#" id="logo">Exalted Generator</a>
+    <a id="logo" ui-sref="index">Exalted Generator</a>
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <li><a ui-sref="index">Home</a></li>
@@ -9,16 +9,18 @@
           <li ng-show="signedIn()" class="dropdown">
             <a id="user_dropdown" href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!-- <%= gravatar_for(current_user, size: 20) %> -->
-              Username <b class="caret"></b>
+              {{user.username}} <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
               <li><a href="#">Profile</a></li>
               <li><a href="#">Settings</a></li>
               <li class="divider"></li>
-              <li><a href="#">Log Out</a></li>
+              <li><a ng-click="logout()">Log Out</a></li>
             </ul>
           </li>
-        <li ng-hide="signedIn()"><a href="#">Log In</a></li>
+        <li ng-hide="signedIn()">
+          <a ui-sref="login">Log In</a>
+        </li>
       </ul>
     </nav>
   </div>
