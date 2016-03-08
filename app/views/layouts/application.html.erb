@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="ex3-gen" ng-controller="TestController">
 <head>
-  <title>Ex3Angular</title>
+  <title>Exalted Generator</title>
   <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= yield %>
+{{ test }}
 
 </body>
 </html>
