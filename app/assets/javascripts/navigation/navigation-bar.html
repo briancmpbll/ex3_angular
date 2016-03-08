@@ -5,8 +5,8 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a ui-sref="index">Home</a></li>
         <!-- <% if logged_in? %> -->
-          <li><a href="#">Users</a></li>
-          <li class="dropdown">
+          <li ng-show="signedIn()"><a href="#">Users</a></li>
+          <li ng-show="signedIn()" class="dropdown">
             <a id="user_dropdown" href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!-- <%= gravatar_for(current_user, size: 20) %> -->
               Username <b class="caret"></b>
@@ -18,9 +18,7 @@
               <li><a href="#">Log Out</a></li>
             </ul>
           </li>
-        <!-- <% else %> -->
-          <li><a href="#">Log In</a></li>
-        <!-- <% end %> -->
+        <li ng-hide="signedIn()"><a href="#">Log In</a></li>
       </ul>
     </nav>
   </div>

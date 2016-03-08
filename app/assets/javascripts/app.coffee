@@ -1,6 +1,7 @@
 app = angular.module('ex3-gen', [
   'ui.router'
   'templates'
+  'Devise'
 ])
 
 app.config(['$stateProvider', '$urlRouterProvider',
