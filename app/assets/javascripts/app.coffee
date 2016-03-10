@@ -3,6 +3,7 @@ app = angular.module('ex3-gen', [
   'templates'
   'Devise'
   'ngFlash'
+  'ngAnimate'
 ])
 
 app.config(['$stateProvider', '$urlRouterProvider',

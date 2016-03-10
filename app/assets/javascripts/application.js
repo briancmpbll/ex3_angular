@@ -7,4 +7,5 @@
 //= require angular-ui-router
 //= require angular-resource
 //= require angular-flash-alert
+//= require angular-animate
 //= require_tree .

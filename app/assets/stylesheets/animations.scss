@@ -1,0 +1,27 @@
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  transition: $args;
+}
+
+@mixin fade-in-and-out {
+  @include transition(all linear 0.5s);
+
+  &.ng-leave {
+    opacity: 1;
+  }
+  &.ng-leave-active {
+    opacity: 0;
+  }
+
+  &.ng-enter {
+    opacity: 0;
+  }
+  &.ng-enter-active {
+    opacity: 1;
+  }
+}
+
+.alert {
+  @include fade-in-and-out;
+}
