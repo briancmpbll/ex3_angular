@@ -2,6 +2,7 @@ app = angular.module('ex3-gen', [
   'ui.router'
   'templates'
   'Devise'
+  'ngFlash'
 ])
 
 app.config(['$stateProvider', '$urlRouterProvider',

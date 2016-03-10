@@ -21,8 +21,8 @@
     "AngularDevise": "angular-devise#^1.3.0",
     "angular-resource": "^1.5.0",
     "angular-mocks": "^1.5.0",
-    "angular-flash": "^0.1.14",
     "bootstrap-sass": "bootstrap-sass-official#^3.3.6",
-    "jquery-ujs": "^1.2.0"
+    "jquery-ujs": "^1.2.0",
+    "angular-flash-alert": "^2.2.4"
   }
 }

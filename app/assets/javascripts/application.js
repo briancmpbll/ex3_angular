@@ -6,4 +6,5 @@
 //= require AngularDevise
 //= require angular-ui-router
 //= require angular-resource
+//= require angular-flash-alert
 //= require_tree .

@@ -1,14 +1,25 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
-  <div class="container">
-    <a id="logo" ui-sref="index">Exalted Generator</a>
-    <nav>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a ui-sref="index">Home</a></li>
-        <!-- <% if logged_in? %> -->
+<header>
+  <nav class="navbar navbar-fixed-top navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+        data-target="#navbar-collapse" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" ui-sref="index">Exalted Generator</a>
+      </div>
+
+      <div class="collapse navbar-collapse" id="navbar-collapse">
+        <ul class="nav navbar-nav navbar-left">
+          <li><a ui-sref="index">Home</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
           <li ng-show="signedIn()"><a href="#">Users</a></li>
           <li ng-show="signedIn()" class="dropdown">
             <a id="user_dropdown" href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <!-- <%= gravatar_for(current_user, size: 20) %> -->
               {{user.username}} <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
@@ -18,10 +29,14 @@
               <li><a ng-click="logout()">Log Out</a></li>
             </ul>
           </li>
-        <li ng-hide="signedIn()">
-          <a ui-sref="login">Log In</a>
-        </li>
-      </ul>
-    </nav>
-  </div>
+          <li ng-hide="signedIn()">
+            <a ui-sref="login">Log In</a>
+          </li>
+          <li ng-hide="signedIn()">
+            <a ui-sref="signup">Sign Up</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 </header>
