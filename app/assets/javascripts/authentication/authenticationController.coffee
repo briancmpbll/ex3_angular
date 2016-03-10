@@ -19,7 +19,7 @@ app.controller('AuthenticationController', [
         ( -> $state.go('index') ),
         ( (error)->
           console.log(error)
-          Flash.create('danger', 'Unable to login')
+          Flash.create('danger', 'Invalid username/password combination.')
         )
       )
 
