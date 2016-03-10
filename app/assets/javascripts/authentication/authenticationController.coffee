@@ -9,7 +9,7 @@ app.controller('AuthenticationController', [
   ($scope, $state, $filter, Auth, Flash)->
     formatMessages = (field, messages)->
       errors = for message in messages
-        "<ul>#{$filter('titleCase')(field)} #{message}</ul>"
+        "<li>#{$filter('titleCase')(field)} #{message}</li>"
       errors.join('')
 
     $scope.user = {email: '', username: '', password: '', password_confirmation: ''}
@@ -32,7 +32,7 @@ app.controller('AuthenticationController', [
             errors = for field, messages of error.data.errors
               formatMessages(field, messages)
 
-          message = if errors != '' then "<li>#{errors.join(' ')}</li>" else
+          message = if errors != '' then "<ul>#{errors.join(' ')}</ul>" else
             'An unknown error occurred. Please try again later or contact the administrator.'
 
           Flash.create('danger', message)
