@@ -3,9 +3,10 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <form ng-submit="register()">
-      <input type="email" class="form-control" placeholder="Email" ng-model="user.email" />
-      <input type="text" class="form-control" placeholder="Username" ng-model="user.username" />
-      <input type="password" class="form-control" placeholder="Password" ng-model="user.password" />
+      <input type="email" class="form-control" placeholder="Email" required ng-model="user.email" />
+      <input type="text" class="form-control" placeholder="Username" required ng-model="user.username" />
+      <input type="password" class="form-control" placeholder="Password" required ng-model="user.password" />
+      <input type="password" class="form-control" placeholder="Password Confirmation" required ng-model="user.password_confirmation">
       <input type="submit" class="btn btn-primary" value="Sign Up" />
     </form>
   </div>
