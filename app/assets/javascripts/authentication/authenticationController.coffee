@@ -15,7 +15,12 @@ app.controller('AuthenticationController', [
         "<li>#{$filter('titleCase')(field)} #{message}</li>"
       errors.join('')
 
-    $scope.user = {email: '', username: '', password: '', password_confirmation: ''}
+    $scope.user =
+      email: ''
+      username: ''
+      password: ''
+      password_confirmation: ''
+      remember_me: false
 
     $scope.login = ->
       Auth.login($scope.user).then(

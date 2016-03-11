@@ -12,7 +12,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'foreman'
 gem 'responders'
 gem 'angular-rails-templates'
-gem 'angular_rails_csrf'
 gem 'devise'
 
 group :development, :test do

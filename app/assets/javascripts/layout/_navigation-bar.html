@@ -19,14 +19,14 @@
         <ul class="nav navbar-nav navbar-right">
           <li ng-show="signedIn()"><a href="#">Users</a></li>
           <li ng-show="signedIn()" class="dropdown">
-            <a id="user_dropdown" href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               {{user.username}} <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
               <li><a href="#">Profile</a></li>
               <li><a href="#">Settings</a></li>
               <li class="divider"></li>
-              <li><a ng-click="logout()">Log Out</a></li>
+              <li><a href="#" ng-click="logout()">Log Out</a></li>
             </ul>
           </li>
           <li ng-hide="signedIn()">

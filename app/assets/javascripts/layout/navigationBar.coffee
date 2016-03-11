@@ -5,13 +5,9 @@ app.directive('navigationBar', ->
   templateUrl: 'layout/_navigation-bar.html'
   controller: ['$scope', 'Auth',
     ($scope, Auth)->
-      config =
-        headers:
-          'X-HTTP-Method-Override': 'DELETE'
-
       $scope.signedIn = Auth.isAuthenticated
       $scope.logout = ->
-        Auth.logout(config)
+        Auth.logout()
 
       Auth.currentUser().then( (user)->
         $scope.user = user
