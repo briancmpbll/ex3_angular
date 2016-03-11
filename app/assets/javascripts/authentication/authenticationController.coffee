@@ -1,5 +1,8 @@
 app = angular.module('ex3-gen')
 
+badCredsError = 'Invalid username/password combination.'
+unknownError = 'An unknown error occurred. Please try again later or contact the administrator.'
+
 app.controller('AuthenticationController', [
   '$scope'
   '$state'
@@ -16,10 +19,13 @@ app.controller('AuthenticationController', [
 
     $scope.login = ->
       Auth.login($scope.user).then(
-        ( -> $state.go('index') ),
+        ( (user)->
+          Flash.create('success', "Welcome back #{user.username}!")
+          $state.go('index') ),
         ( (error)->
-          console.log(error)
-          Flash.create('danger', 'Invalid username/password combination.')
+          message = if error.status is 401 then badCredsError else unknownError
+
+          Flash.create('danger', message)
         )
       )
 
@@ -32,8 +38,7 @@ app.controller('AuthenticationController', [
             errors = for field, messages of error.data.errors
               formatMessages(field, messages)
 
-          message = if errors != '' then "<ul>#{errors.join(' ')}</ul>" else
-            'An unknown error occurred. Please try again later or contact the administrator.'
+          message = if errors != '' then "<ul>#{errors.join(' ')}</ul>" else unknownError
 
           Flash.create('danger', message)
         )
