@@ -5,4 +5,5 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   validates :username, presence: true, uniqueness: true
+  validates_format_of :email, with: /.+@.+\..+/i
 end

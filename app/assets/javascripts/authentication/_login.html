@@ -3,10 +3,10 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <form ng-submit="login()">
-      <input type="email" class="form-control" placeholder="Email" ng-model="user.email" />
-      <input type="password" class="form-control" placeholder="Password" ng-model="user.password" />
+      <input type="email" class="form-control" placeholder="Email" required ng-model="user.email" />
+      <input type="password" class="form-control" placeholder="Password" required ng-model="user.password" />
       <label for="remember_me" class="checkbox-inline">
-        <input type="checkbox" id="remember_me">
+        <input type="checkbox" id="remember_me" ng-model="user.remember_me">
         <span>Remember on this computer</span>
       </label>
       <input type="submit" class="btn btn-primary" value="Log In" />
