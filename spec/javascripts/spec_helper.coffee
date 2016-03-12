@@ -10,3 +10,9 @@ beforeEach ->
         result.pass = angular.equals(actual, expected)
         result
     }
+
+  this.getCompiledElement = (elementName)->
+    element = angular.element("<#{elementName}></#{elementName}>")
+    compiledElement = this.compile(element)(this.scope)
+    this.scope.$digest()
+    compiledElement

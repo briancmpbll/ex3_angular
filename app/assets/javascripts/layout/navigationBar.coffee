@@ -6,8 +6,7 @@ app.directive('navigationBar', ->
   controller: ['$scope', 'Auth',
     ($scope, Auth)->
       $scope.signedIn = Auth.isAuthenticated
-      $scope.logout = ->
-        Auth.logout()
+      $scope.logout = Auth.logout
 
       Auth.currentUser().then( (user)->
         $scope.user = user
