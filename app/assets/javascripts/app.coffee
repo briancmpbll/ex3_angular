@@ -6,7 +6,9 @@ app = angular.module('ex3-gen', [
   'ngAnimate'
 ])
 
-app.config(['$stateProvider', '$urlRouterProvider',
+app.config([
+  '$stateProvider'
+  '$urlRouterProvider'
   ($stateProvider, $urlRouterProvider)->
     redirectIfSignedIn = ['$state', 'Auth',
       ($state, Auth)->
@@ -23,13 +25,13 @@ app.config(['$stateProvider', '$urlRouterProvider',
       .state('login'
         url: '/login'
         templateUrl: 'authentication/_login.html'
-        controller: 'AuthenticationController'
+        controller: 'LoginController'
         onEnter: redirectIfSignedIn
       )
       .state('signup'
         url: '/signup'
         templateUrl: 'authentication/_signup.html'
-        controller: 'AuthenticationController'
+        controller: 'SignupController'
         onEnter: redirectIfSignedIn
       )
 
