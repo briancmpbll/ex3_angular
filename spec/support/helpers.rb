@@ -19,6 +19,6 @@ def signup_as(user)
   fill_in 'Email', with: user.email
   fill_in 'Username', with: user.username
   fill_in 'Password', with: user.password
-  fill_in 'Password Confirmation', with: user.password
+  fill_in 'Password Confirmation', with: user.password_confirmation
   click_button 'Sign Up'
 end
