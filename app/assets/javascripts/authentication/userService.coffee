@@ -18,9 +18,9 @@ app.factory("UserService", [
     forward = ->
       $state.go('index')
 
-    o =
-      data:
-        currentUser: {}
+    o = {}
+    o.data =
+      currentUser: {}
 
     o.login = (credentials)->
       Auth.login(credentials).then(

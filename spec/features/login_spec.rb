@@ -1,17 +1,17 @@
 require 'spec_helper'
 
-feature 'Signing in', js: true do
+feature 'logging in', js: true do
   given(:user) { FactoryGirl.create(:user) }
   given(:invalid_user) { FactoryGirl.build(:user) }
 
-  scenario 'Signing in with invalid credentials' do
+  scenario 'with invalid credentials' do
     login_as invalid_user
 
     expect(page).to have_alert :danger
     expect(page).to have_content 'Invalid username/password combination.'
   end
 
-  scenario 'Signing in with valid credentials' do
+  scenario 'with valid credentials' do
     login_as user
 
     expect(page).to have_alert :success
@@ -19,7 +19,7 @@ feature 'Signing in', js: true do
     expect(page).to have_menu_for user
   end
 
-  scenario 'Signing in, logging out, and signing in again' do
+  scenario 'then logging out, and logging in again' do
     login_as user
     expect(page).to have_menu_for user
 
