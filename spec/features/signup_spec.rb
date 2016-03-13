@@ -8,5 +8,6 @@ feature 'signing up', js: true do
     signup_as new_user
 
     expect(page).to have_menu_for new_user
+    expect(current_path_info).to be_index_path
   end
 end

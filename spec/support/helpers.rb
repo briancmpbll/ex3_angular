@@ -1,3 +1,7 @@
+def current_path_info
+  current_url.sub(%r{.*?://}, '')[%r{[/\?\#].*}] || '/'
+end
+
 def login_as(user)
   visit '#/login'
   fill_in 'Email', with: user.email
