@@ -1,18 +1,17 @@
 app = angular.module('ex3-gen')
 
 app.factory("UserService", [
-  "$rootScope"
   "$state"
-  "$filter"
   "Auth"
   "Flash"
-  ($rootScope, $state, $filter, Auth, Flash)->
+  "changeCase"
+  ($state, Auth, Flash, changeCase)->
     badCredsError = 'Invalid username/password combination.'
     unknownError = 'An unknown error occurred. Please try again later or contact the administrator.'
 
     formatMessages = (field, messages)->
       errors = for message in messages
-        "<li>#{$filter('titleCase')(field)} #{message}</li>"
+        "<li>#{changeCase.titleCase(field)} #{message}</li>"
       errors.join('')
 
     forward = ->
@@ -52,15 +51,19 @@ app.factory("UserService", [
           Flash.create('danger', message)
         )
       )
-    o.logout = Auth.logout
+    o.logout = ->
+      Auth.logout().then(
+        ( ->
+          o.data.currentUser = {}
+        ),
+        ( (error)->
+          Flash.create('danger', unknownError)
+        )
+      )
     o.loggedIn = Auth.isAuthenticated
 
     Auth.currentUser().then( (user)->
       o.data.currentUser = user
-    )
-
-    $rootScope.$on('devise:logout', ->
-      o.data.currentUser = {}
     )
 
     o

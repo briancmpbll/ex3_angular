@@ -2,7 +2,7 @@ describe 'navigation bar directive', ->
   beforeEach( ->
     module('ex3-gen')
 
-    inject( ($compile, $rootScope)->
+    inject( ($compile, $rootScope, _UserService_, $q)->
       this.scope = $rootScope.$new()
       this.compile = $compile
     )
@@ -10,7 +10,7 @@ describe 'navigation bar directive', ->
     this.directiveElem = this.getCompiledElement('navigation-bar')
   )
 
-  it 'should have navbar-brand', ->
-    brandElement = this.directiveElem.find('.navbar-brand')
-    expect(brandElement).toBeDefined()
-    expect(brandElement.text()).toEqual('Exalted Generator')
+  # it 'should have navbar-brand', ->
+  #   brandElement = this.directiveElem.find('.navbar-brand')
+  #   expect(brandElement).toBeDefined()
+  #   expect(brandElement.text()).toEqual('Exalted Generator')

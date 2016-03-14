@@ -4,6 +4,7 @@ app = angular.module('ex3-gen', [
   'Devise'
   'ngFlash'
   'ngAnimate'
+  'change-case'
 ])
 
 app.config([
