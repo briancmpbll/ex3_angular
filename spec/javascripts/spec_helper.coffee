@@ -3,6 +3,8 @@
 #= require application
 #= require angular-mocks/angular-mocks
 beforeEach ->
+  module 'ex3-gen'
+
   jasmine.addMatchers toEqualData: (util, customEqualityTesters)->
     {
       compare: (actual, expected) ->

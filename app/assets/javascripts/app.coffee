@@ -1,13 +1,13 @@
-app = angular.module('ex3-gen', [
+app = angular.module 'ex3-gen', [
   'ui.router'
   'templates'
   'Devise'
   'ngFlash'
   'ngAnimate'
   'change-case'
-])
+]
 
-app.config([
+app.config [
   '$stateProvider'
   '$urlRouterProvider'
   ($stateProvider, $urlRouterProvider)->
@@ -37,4 +37,4 @@ app.config([
       )
 
     $urlRouterProvider.otherwise('index')
-])
+]

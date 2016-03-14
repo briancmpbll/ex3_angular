@@ -1,6 +1,6 @@
-app = angular.module('ex3-gen')
+app = angular.module 'ex3-gen'
 
-app.controller('SignupController', [
+app.controller 'SignupController', [
   '$scope',
   'UserService'
   ($scope, UserService)->
@@ -12,4 +12,4 @@ app.controller('SignupController', [
 
     $scope.register = ->
       UserService.register($scope.user)
-])
+]

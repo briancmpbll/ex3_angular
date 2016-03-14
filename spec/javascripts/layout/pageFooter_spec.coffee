@@ -1,14 +1,10 @@
 describe "pageFooter directive", ->
-  beforeEach( ->
-    module('ex3-gen')
-
-    inject( ($compile, $rootScope)->
+  beforeEach ->
+    inject ($compile, $rootScope)->
       this.scope = $rootScope.$new()
       this.compile = $compile
-    )
 
     this.directiveElem = this.getCompiledElement('page-footer')
-  )
 
   it 'should have a small element', ->
     smallElement = this.directiveElem.find('small')

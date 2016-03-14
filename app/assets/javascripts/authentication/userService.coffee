@@ -1,10 +1,10 @@
-app = angular.module('ex3-gen')
+app = angular.module 'ex3-gen'
 
-app.factory("UserService", [
-  "$state"
-  "Auth"
-  "Flash"
-  "changeCase"
+app.factory 'UserService', [
+  '$state'
+  'Auth'
+  'Flash'
+  'changeCase'
   ($state, Auth, Flash, changeCase)->
     badCredsError = 'Invalid username/password combination.'
     unknownError = 'An unknown error occurred. Please try again later or contact the administrator.'
@@ -17,14 +17,14 @@ app.factory("UserService", [
     forward = ->
       $state.go('index')
 
-    o = {}
-    o.data =
+    service = {}
+    service.data =
       currentUser: {}
 
-    o.login = (credentials)->
+    service.login = (credentials)->
       Auth.login(credentials).then(
         ( (user)->
-          o.data.currentUser = user
+          service.data.currentUser = user
           Flash.create('success', "Welcome back #{user.username}!")
           forward()
         ),
@@ -34,10 +34,10 @@ app.factory("UserService", [
           Flash.create('danger', message)
         )
       )
-    o.register = (credentials)->
+    service.register = (credentials)->
       Auth.register(credentials).then(
         ( (user)->
-          o.data.currentUser = user
+          service.data.currentUser = user
           forward()
         ),
         ( (error)->
@@ -51,20 +51,20 @@ app.factory("UserService", [
           Flash.create('danger', message)
         )
       )
-    o.logout = ->
+    service.logout = ->
       Auth.logout().then(
         ( ->
-          o.data.currentUser = {}
+          service.data.currentUser = {}
         ),
         ( (error)->
           Flash.create('danger', unknownError)
         )
       )
-    o.loggedIn = Auth.isAuthenticated
+    service.loggedIn = Auth.isAuthenticated
 
     Auth.currentUser().then( (user)->
-      o.data.currentUser = user
+      service.data.currentUser = user
     )
 
-    o
-])
+    service
+]
