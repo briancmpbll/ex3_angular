@@ -48,10 +48,10 @@ describe 'the user service', ->
     spyOn(@Flash, 'create')
     spyOn(@state, 'go')
 
-  it 'should set the logged in user if there is one', ->
+  it 'should not set the user if there is no user authenticated', ->
     @digest()
     expect(@Auth.currentUser).toHaveBeenCalled()
-    expect(@UserService.data.currentUser).toEqualData(testUser)
+    expect(@UserService.data.currentUser).toEqualData({})
 
   describe 'after a successful login', ->
     beforeEach ->
