@@ -1,18 +1,21 @@
 describe 'the user service', ->
-  expectedUser = null
-  errorStatus = 401
-  errors = null
+  beforeEach ->
+    @expectedUser =
+      email: 'test@test.com'
+      username: 'test'
+    @errorStatus = 401
+    @errors = null
 
-  beforeEach module ($provide)->
-    $provide.factory('Auth', ($q)->
-      service =
-        currentUser: jasmine.createSpy('currentUser').and.callFake( ->
-          return $q.when(expectedUser) if expectedUser?
-          $q.reject()
-        )
-        isAuthenticated: jasmine.createSpy('isAuthenticated').and.returnValue(true)
-    )
-    return
+    module ($provide)=>
+      $provide.factory('Auth', ($q)=>
+        service =
+          currentUser: jasmine.createSpy('currentUser').and.callFake( =>
+            return $q.when(@expectedUser) if @expectedUser?
+            $q.reject()
+          )
+          isAuthenticated: jasmine.createSpy('isAuthenticated').and.returnValue(true)
+      )
+      return
 
   beforeEach inject ($rootScope, $state, Auth, Flash, changeCase, UserService)->
     @scope = $rootScope.$new()
@@ -60,7 +63,7 @@ describe 'the user service', ->
   it 'should have no current user if there is none', ->
     @scope.$digest()
     expect(@Auth.currentUser).toHaveBeenCalled()
-    expect(@UserService.data.currentUser).toEqualData({})
+    expect(@UserService.data.currentUser).toEqualData(@expectedUser)
 
   it 'should login a valid user', ->
     @expectedUser =
