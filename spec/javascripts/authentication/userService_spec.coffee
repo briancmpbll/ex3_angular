@@ -72,7 +72,7 @@ describe 'the user service', ->
       @errorStatus = 401
       @injectServices()
 
-    it 'should not set the user if there is no user authenticated', ->
+    it 'should not set the user', ->
       @digest()
       expect(@Auth.currentUser).toHaveBeenCalled()
       expect(@UserService.data.currentUser).toEqualData({})
@@ -128,3 +128,32 @@ describe 'the user service', ->
         expect(@UserService.data.currentUser).toEqualData(testUser)
       it 'should try to register with the right user', ->
         expect(@Auth.register).toHaveBeenCalledWith(testUser)
+
+    describe 'after an unsuccessful registration', ->
+      beforeEach ->
+        @errorStatus = 401
+        @errors =
+          email: ['has already been taken']
+        @UserService.register(testUser)
+        @digest()
+
+      it 'should not set the user', ->
+        expect(@UserService.data.currentUser).toEqualData({})
+      it 'should show show a message containing errors', ->
+        expect(@Flash.create).toHaveBeenCalledWith('danger',
+          '<ul><li>Email has already been taken</li></ul>')
+      it 'should not forward', ->
+        expect(@state.go).not.toHaveBeenCalled()
+
+    describe 'after an unknown registration error', ->
+      beforeEach ->
+        @errorStatus = 100
+        @UserService.register(testUser)
+        @digest()
+
+      it 'should not set the user', ->
+        expect(@UserService.data.currentUser).toEqualData({})
+      it 'should show show the unknown erro message', ->
+        expect(@Flash.create).toHaveBeenCalledWith('danger', unknownError)
+      it 'should not forward', ->
+        expect(@state.go).not.toHaveBeenCalled()
