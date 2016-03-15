@@ -1,17 +1,37 @@
 describe 'the user service', ->
+  badCredsError = 'Invalid username/password combination.'
+  unknownError = 'An unknown error occurred. Please try again later or contact the administrator.'
+
+  testUser =
+    email: 'test@test.com'
+    username: 'test'
+    password: 'test'
+
   beforeEach ->
-    @expectedUser =
-      email: 'test@test.com'
-      username: 'test'
     @errorStatus = 401
-    @errors = null
+    @errors = []
 
     module ($provide)=>
       $provide.factory('Auth', ($q)=>
         service =
+          login: jasmine.createSpy('login').and.callFake( (credentials)=>
+            return $q.when(credentials) if @errorStatus == 0
+            $q.reject({status: @errorStatus})
+          )
+          logout: jasmine.createSpy('logout').and.callFake( =>
+            return $q.when(testUser) if @errorStatus == 0
+            $q.reject({status: @errorStatus})
+          )
+          register: jasmine.createSpy('register').and.callFake( (credentials)=>
+            return $q.when(credentials) if @errorStatus == 0
+            $q.reject(
+              status: @errorStatus
+              data: {errors: @errors}
+            )
+          )
           currentUser: jasmine.createSpy('currentUser').and.callFake( =>
-            return $q.when(@expectedUser) if @expectedUser?
-            $q.reject()
+            return $q.when(testUser) if @errorStatus == 0
+            $q.reject({status: @errorStatus})
           )
           isAuthenticated: jasmine.createSpy('isAuthenticated').and.returnValue(true)
       )
@@ -25,54 +45,74 @@ describe 'the user service', ->
     @changeCase = changeCase
     @UserService = UserService
 
-    # inject (Auth, UserService, $q)->
-    #   @Auth = Auth
+    spyOn(@Flash, 'create')
+    spyOn(@state, 'go')
 
-    #   spyOn(@Auth, 'login').and.callFake( (credentials)=>
-    #     $q.when(@expectedUser) if @expectedUser?
-    #     $q.reject(
-    #       status: @errorStatus
-    #     )
-    #   )
-    #   spyOn(@Auth, 'logout').and.callFake( =>
-    #     $q.when(@expectedUser) if @expectedUser?
-    #     $q.reject(
-    #       status: @errorStatus
-    #     )
-    #   )
-    #   spyOn(@Auth, 'register').and.callFake( (credentials)=>
-    #     $q.when(@expectedUser) if @expectedUser?
-    #     $q.reject(
-    #       status: @errorStatus
-    #       data:
-    #         errors: @errors
-    #     )
-    #   )
-    #   spyOn(@Auth, 'currentUser').and.callFake( =>
-    #     $q.when(@expectedUser) if @expectedUser?
-    #     $q.reject(
-    #       status: @errorStatus
-    #     )
-    #   )
-    #   spyOn(@Auth, 'isAuthenticated').and.callFake( =>
-    #     @expectedUser?
-    #   )
-
-    #   @UserService = UserService
-
-  it 'should have no current user if there is none', ->
-    @scope.$digest()
+  it 'should set the logged in user if there is one', ->
+    @digest()
     expect(@Auth.currentUser).toHaveBeenCalled()
-    expect(@UserService.data.currentUser).toEqualData(@expectedUser)
+    expect(@UserService.data.currentUser).toEqualData(testUser)
 
-  it 'should login a valid user', ->
-    @expectedUser =
-      email: 'test@test.com'
-      username: 'test'
-    # @UserService.login(
-    #   email:'test@test.com'
-    #   password: 'password'
-    # )
+  describe 'after a successful login', ->
+    beforeEach ->
+      @errorStatus = 0
+      @UserService.login(testUser)
+      @digest()
 
-    # this.scope.$digest
-    # expect(this.Auth.login).toHaveBeenCalled()
+    it 'should set the right user', ->
+      expect(@UserService.data.currentUser).toEqualData(testUser)
+    it 'should try to login the right user', ->
+      expect(@Auth.login).toHaveBeenCalledWith(testUser)
+    it 'should show the correct flash message', ->
+      expect(@Flash.create).toHaveBeenCalledWith('success', 'Welcome back test!')
+    it 'should go to the index', ->
+      expect(@state.go).toHaveBeenCalledWith('index')
+
+  describe 'after an unsuccessful login', ->
+    beforeEach ->
+      @errorStatus = 401
+      @UserService.login(testUser)
+      @digest()
+
+    it 'should not set the user', ->
+      expect(@UserService.data.currentUser).toEqualData({})
+    it 'should show the bad credentials flash message', ->
+      expect(@Flash.create).toHaveBeenCalledWith('danger', badCredsError)
+    it 'should not forward', ->
+      expect(@state.go).not.toHaveBeenCalled()
+
+  describe 'after an unknown error', ->
+    beforeEach ->
+      @errorStatus = 100
+      @UserService.login(testUser)
+      @digest()
+
+    it 'should not set the user', ->
+      expect(@UserService.data.currentUser).toEqualData({})
+    it 'should show the unknown error flash message', ->
+      expect(@Flash.create).toHaveBeenCalledWith('danger', unknownError)
+    it 'should not forward', ->
+      expect(@state.go).not.toHaveBeenCalled()
+
+  describe 'after a successful registration', ->
+    beforeEach ->
+      @errorStatus = 0
+      @UserService.register(testUser)
+      @digest()
+
+    it 'should set the right user', ->
+      expect(@UserService.data.currentUser).toEqualData(testUser)
+    it 'should try to register with the right user', ->
+      expect(@Auth.register).toHaveBeenCalledWith(testUser)
+
+  describe 'after successfully logging out', ->
+    beforeEach ->
+      @errorStatus = 0
+      @UserService.data.currentUser = testUser
+      @UserService.logout()
+      @digest()
+
+    it 'should call logout', ->
+      expect(@Auth.logout).toHaveBeenCalled()
+    it 'should unset the user', ->
+      expect(@UserService.data.currentUser).toEqual({})

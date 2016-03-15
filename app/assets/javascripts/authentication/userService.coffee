@@ -30,7 +30,6 @@ app.factory 'UserService', [
         ),
         ( (error)->
           message = if error.status is 401 then badCredsError else unknownError
-
           Flash.create('danger', message)
         )
       )
