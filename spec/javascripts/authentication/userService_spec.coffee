@@ -8,9 +8,6 @@ describe 'the user service', ->
     password: 'test'
 
   beforeEach ->
-    @errorStatus = 401
-    @errors = []
-
     module ($provide)=>
       $provide.factory('Auth', ($q)=>
         service =
@@ -37,82 +34,97 @@ describe 'the user service', ->
       )
       return
 
-  beforeEach inject ($rootScope, $state, Auth, Flash, changeCase, UserService)->
-    @scope = $rootScope.$new()
-    @state = $state
-    @Auth = Auth
-    @Flash = Flash
-    @changeCase = changeCase
-    @UserService = UserService
+    @injectServices = ->
+      inject ($rootScope, $state, Auth, Flash, changeCase, UserService)->
+        @scope = $rootScope.$new()
+        @state = $state
+        @Auth = Auth
+        @Flash = Flash
+        @changeCase = changeCase
+        @UserService = UserService
 
-    spyOn(@Flash, 'create')
-    spyOn(@state, 'go')
+        spyOn(@Flash, 'create')
+        spyOn(@state, 'go')
 
-  it 'should not set the user if there is no user authenticated', ->
-    @digest()
-    expect(@Auth.currentUser).toHaveBeenCalled()
-    expect(@UserService.data.currentUser).toEqualData({})
-
-  describe 'after a successful login', ->
+  describe 'with an autheticated user', ->
     beforeEach ->
       @errorStatus = 0
-      @UserService.login(testUser)
+      @injectServices()
       @digest()
 
-    it 'should set the right user', ->
+    it 'should set the user', ->
+      expect(@Auth.currentUser).toHaveBeenCalled()
       expect(@UserService.data.currentUser).toEqualData(testUser)
-    it 'should try to login the right user', ->
-      expect(@Auth.login).toHaveBeenCalledWith(testUser)
-    it 'should show the correct flash message', ->
-      expect(@Flash.create).toHaveBeenCalledWith('success', 'Welcome back test!')
-    it 'should go to the index', ->
-      expect(@state.go).toHaveBeenCalledWith('index')
 
-  describe 'after an unsuccessful login', ->
+    describe 'after successfully logging out', ->
+      beforeEach ->
+        @errorStatus = 0
+        @UserService.logout()
+        @digest()
+
+      it 'should call logout', ->
+        expect(@Auth.logout).toHaveBeenCalled()
+      it 'should unset the user', ->
+        expect(@UserService.data.currentUser).toEqual({})
+
+  describe 'with no authenticated user', ->
     beforeEach ->
       @errorStatus = 401
-      @UserService.login(testUser)
-      @digest()
+      @injectServices()
 
-    it 'should not set the user', ->
+    it 'should not set the user if there is no user authenticated', ->
+      @digest()
+      expect(@Auth.currentUser).toHaveBeenCalled()
       expect(@UserService.data.currentUser).toEqualData({})
-    it 'should show the bad credentials flash message', ->
-      expect(@Flash.create).toHaveBeenCalledWith('danger', badCredsError)
-    it 'should not forward', ->
-      expect(@state.go).not.toHaveBeenCalled()
 
-  describe 'after an unknown error', ->
-    beforeEach ->
-      @errorStatus = 100
-      @UserService.login(testUser)
-      @digest()
+    describe 'after a successful login', ->
+      beforeEach ->
+        @errorStatus = 0
+        @UserService.login(testUser)
+        @digest()
 
-    it 'should not set the user', ->
-      expect(@UserService.data.currentUser).toEqualData({})
-    it 'should show the unknown error flash message', ->
-      expect(@Flash.create).toHaveBeenCalledWith('danger', unknownError)
-    it 'should not forward', ->
-      expect(@state.go).not.toHaveBeenCalled()
+      it 'should set the right user', ->
+        expect(@UserService.data.currentUser).toEqualData(testUser)
+      it 'should try to login the right user', ->
+        expect(@Auth.login).toHaveBeenCalledWith(testUser)
+      it 'should show the correct flash message', ->
+        expect(@Flash.create).toHaveBeenCalledWith('success', 'Welcome back test!')
+      it 'should go to the index', ->
+        expect(@state.go).toHaveBeenCalledWith('index')
 
-  describe 'after a successful registration', ->
-    beforeEach ->
-      @errorStatus = 0
-      @UserService.register(testUser)
-      @digest()
+    describe 'after an unsuccessful login', ->
+      beforeEach ->
+        @errorStatus = 401
+        @UserService.login(testUser)
+        @digest()
 
-    it 'should set the right user', ->
-      expect(@UserService.data.currentUser).toEqualData(testUser)
-    it 'should try to register with the right user', ->
-      expect(@Auth.register).toHaveBeenCalledWith(testUser)
+      it 'should not set the user', ->
+        expect(@UserService.data.currentUser).toEqualData({})
+      it 'should show the bad credentials flash message', ->
+        expect(@Flash.create).toHaveBeenCalledWith('danger', badCredsError)
+      it 'should not forward', ->
+        expect(@state.go).not.toHaveBeenCalled()
 
-  describe 'after successfully logging out', ->
-    beforeEach ->
-      @errorStatus = 0
-      @UserService.data.currentUser = testUser
-      @UserService.logout()
-      @digest()
+    describe 'after an unknown login error', ->
+      beforeEach ->
+        @errorStatus = 100
+        @UserService.login(testUser)
+        @digest()
 
-    it 'should call logout', ->
-      expect(@Auth.logout).toHaveBeenCalled()
-    it 'should unset the user', ->
-      expect(@UserService.data.currentUser).toEqual({})
+      it 'should not set the user', ->
+        expect(@UserService.data.currentUser).toEqualData({})
+      it 'should show the unknown error flash message', ->
+        expect(@Flash.create).toHaveBeenCalledWith('danger', unknownError)
+      it 'should not forward', ->
+        expect(@state.go).not.toHaveBeenCalled()
+
+    describe 'after a successful registration', ->
+      beforeEach ->
+        @errorStatus = 0
+        @UserService.register(testUser)
+        @digest()
+
+      it 'should set the right user', ->
+        expect(@UserService.data.currentUser).toEqualData(testUser)
+      it 'should try to register with the right user', ->
+        expect(@Auth.register).toHaveBeenCalledWith(testUser)
