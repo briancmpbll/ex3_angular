@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 feature 'logging in', js: true do
   given(:user) { FactoryGirl.create(:user) }

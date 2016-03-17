@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 feature 'signing up', js: true do
   given(:new_user) { FactoryGirl.build(:user) }
