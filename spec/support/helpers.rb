@@ -10,7 +10,7 @@ def login_as(user)
 end
 
 def logout
-  click_link '#userDropdown'
+  click_link 'userDropdown'
   click_on 'Log Out'
 end
 
