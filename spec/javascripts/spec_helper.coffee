@@ -8,14 +8,14 @@ beforeEach ->
   jasmine.addMatchers
     toEqualData: (util, customEqualityTesters)->
       {
-        compare: (actual, expected) ->
+        compare: (actual, expected)->
           result = {}
           result.pass = angular.equals(actual, expected)
           result
       }
     toHaveText: (util, customEqualityTesters)->
       {
-        compare: (actual, expected) ->
+        compare: (actual, expected)->
           result = {}
           result.pass = actual.text().trim() == expected
           result
