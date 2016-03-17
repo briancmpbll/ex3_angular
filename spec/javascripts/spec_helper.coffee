@@ -57,3 +57,18 @@ beforeEach ->
 
   @digest = =>
     @scope.$digest()
+
+  @mockUserService = ->
+    module ($provide)->
+      $provide.factory('UserService', ->
+        service = {}
+        service.data = {currentUser: {}}
+        service.login = jasmine.createSpy('login')
+        service.register = jasmine.createSpy('register')
+        service.logout = jasmine.createSpy('logout')
+        service.loggedIn = jasmine.createSpy('loggedIn').and.callFake( ->
+          not angular.equals(@data.currentUser, {})
+        )
+        service
+      )
+      return

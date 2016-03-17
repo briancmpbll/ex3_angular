@@ -1,19 +1,6 @@
 describe 'the navigation bar', ->
   beforeEach ->
-    # Mock the UserService
-    module ($provide)->
-      $provide.factory('UserService', ->
-        service = {}
-        service.data = {currentUser: {}}
-        service.login = jasmine.createSpy('login')
-        service.register = jasmine.createSpy('register')
-        service.logout = jasmine.createSpy('logout')
-        service.loggedIn = jasmine.createSpy('loggedIn').and.callFake( ->
-          not angular.equals(service.data.currentUser, {})
-        )
-        service
-      )
-      return
+    @mockUserService()
 
     inject ($rootScope, $compile, UserService)->
       @scope = $rootScope.$new()
@@ -40,6 +27,10 @@ describe 'the navigation bar', ->
 
   it 'should call loggedIn on compilation', ->
     expect(@UserService.loggedIn).toHaveBeenCalled()
+
+  it 'should call logout', ->
+    @scope.logout()
+    expect(@UserService.logout).toHaveBeenCalled()
 
   describe 'when no user is logged in', ->
     beforeEach ->
