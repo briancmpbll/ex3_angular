@@ -33,9 +33,10 @@ describe 'the navigation bar', ->
     brandElement = @directiveElem.find('.navbar-brand')
     expect(brandElement).toHaveText('Exalted Generator')
 
-  it 'should have a home link', ->
-    homeLink = @directiveElem.find('.navbar-left').find('#nav-home')
-    expect(homeLink).toHaveText('Home')
+  it 'should have all the menu elements', ->
+    expect(@directiveElem).toHaveElements([
+      '#nav-home', '#nav-users', '#nav-user-dropdown', '#nav-login', '#nav-signup'
+    ])
 
   it 'should call loggedIn on compilation', ->
     expect(@UserService.loggedIn).toHaveBeenCalled()
@@ -46,6 +47,9 @@ describe 'the navigation bar', ->
 
     it 'should not have a user', ->
       expect(@scope.data.currentUser).toEqualData({})
+
+    it 'should not be logged in', ->
+      expect(@scope.loggedIn).toBeFalsy()
 
     it 'should hide the users link', ->
       expect(@usersLink).toBeHidden()

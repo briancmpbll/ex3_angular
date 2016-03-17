@@ -41,6 +41,13 @@ beforeEach ->
           result.pass = actual.hasClass('ng-hide')
           result
       }
+    toHaveElements: (util, customEqualityTesters)->
+      {
+        compare: (actual, expected)->
+          result = {}
+          result.pass = not expected.some (elem)-> actual.find(elem).length == 0
+          result
+      }
 
   @getCompiledElement = (elementName)=>
     element = angular.element("<#{elementName}></#{elementName}>")
