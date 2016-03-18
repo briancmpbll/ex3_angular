@@ -1,9 +1,7 @@
 
 describe "pageFooter directive", ->
   beforeEach ->
-    inject ($rootScope, $compile)->
-      @scope = $rootScope.$new()
-      @compile = $compile
+    @injectCommon()
 
     @directiveElem = @getCompiledElement('page-footer')
 

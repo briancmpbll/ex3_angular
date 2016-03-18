@@ -1,11 +1,8 @@
 describe 'the navigation bar', ->
   beforeEach ->
     @mockUserService()
-
-    inject ($rootScope, $compile, UserService)->
-      @scope = $rootScope.$new()
-      @compile = $compile
-      @UserService = UserService
+    @injectCommon()
+    @injectUserService()
 
     @directiveElem = @getCompiledElement('navigation-bar')
 

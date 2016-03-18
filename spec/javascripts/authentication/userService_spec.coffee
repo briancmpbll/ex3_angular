@@ -1,6 +1,7 @@
 describe 'the user service', ->
   badCredsError = 'Invalid username/password combination.'
-  unknownError = 'An unknown error occurred. Please try again later or contact the administrator.'
+  unknownError = 'An unknown error occurred. Please try again later
+    or contact the administrator.'
 
   testUser =
     email: 'test@test.com'
@@ -35,9 +36,8 @@ describe 'the user service', ->
       return
 
     @injectServices = ->
-      inject ($rootScope, $state, Auth, Flash, changeCase, UserService)->
-        @scope = $rootScope.$new()
-        @state = $state
+      @injectCommon()
+      inject (Auth, Flash, changeCase, UserService)->
         @Auth = Auth
         @Flash = Flash
         @changeCase = changeCase

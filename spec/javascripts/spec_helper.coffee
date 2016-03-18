@@ -49,6 +49,18 @@ beforeEach ->
           result
       }
 
+  @injectCommon = ->
+    inject ($rootScope, $compile, $httpBackend, $state, $controller)->
+      @scope = $rootScope.$new()
+      @compile = $compile
+      @http = $httpBackend
+      @state = $state
+      @controller = $controller
+
+  @injectUserService = ->
+    inject (UserService)->
+      @UserService = UserService
+
   @getCompiledElement = (elementName)=>
     element = angular.element("<#{elementName}></#{elementName}>")
     compiledElement = @compile(element)(@scope)
