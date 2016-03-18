@@ -9,6 +9,12 @@ class ApplicationController < ActionController::Base
 
   after_filter :set_csrf_cookie_for_ng
 
+  rescue_from ActiveRecord::RecordNotFound do
+    respond_to do |type|
+      type.all { render nothing: true, status: 404 }
+    end
+  end
+
   protected
 
   def verified_request?
