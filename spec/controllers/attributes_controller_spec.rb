@@ -40,4 +40,27 @@ RSpec.describe AttributesController, type: :controller do
       it { expect(results.length).to eq(3) }
     end
   end
+
+  describe 'show' do
+    before do
+      get :show, id: attribute_id, format: :json
+    end
+
+    context 'when the attribute exists' do
+      let(:attribute) { FactoryGirl.create(:attribute) }
+      let(:attribute_id) { attribute.id }
+      let(:results) { JSON.parse(response.body) }
+
+      it { is_expected.to respond_with :success }
+      it { is_expected.to render_template :show }
+      it { expect(results['id']).to eq(attribute_id) }
+      it { expect(results['name']).to eq(attribute.name) }
+    end
+
+    context "when the attribute category doesn't exist" do
+      let(:attribute_id) { -9999 }
+
+      it { is_expected.to respond_with :not_found }
+    end
+  end
 end
