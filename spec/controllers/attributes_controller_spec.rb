@@ -13,54 +13,27 @@ RSpec.describe AttributesController, type: :controller do
   describe 'index' do
     before do
       @attribute_categories = FactoryGirl.create_list(:attribute_category, 2)
+      @attributes = []
       @attribute_categories.each do |category|
-        FactoryGirl.create_list(:attribute, 3, attribute_category: category)
+        @attributes.concat FactoryGirl.create_list(:attribute, 3, attribute_category: category)
       end
     end
 
-    let(:results) { JSON.parse(response.body) }
-
     describe 'without a category' do
-      before do
-        get :index, format: :json
-      end
+      let(:collection) { @attributes }
 
-      it { is_expected.to respond_with :success }
-      it { is_expected.to render_template :index }
-      it { expect(results.length).to eq(6) }
+      it_should_behave_like 'an index action'
     end
 
     describe 'with a category' do
-      before do
-        get :index, attribute_category_id: @attribute_categories[0].id, format: :json
-      end
+      let(:collection) { @attribute_categories[0].child_attributes }
+      let(:parent_id) { @attribute_categories[0].id }
 
-      it { is_expected.to respond_with :success }
-      it { is_expected.to render_template :index }
-      it { expect(results.length).to eq(3) }
+      it_should_behave_like 'an index action', :attribute_category_id
     end
   end
 
   describe 'show' do
-    before do
-      get :show, id: attribute_id, format: :json
-    end
-
-    context 'when the attribute exists' do
-      let(:attribute) { FactoryGirl.create(:attribute) }
-      let(:attribute_id) { attribute.id }
-      let(:results) { JSON.parse(response.body) }
-
-      it { is_expected.to respond_with :success }
-      it { is_expected.to render_template :show }
-      it { expect(results['id']).to eq(attribute_id) }
-      it { expect(results['name']).to eq(attribute.name) }
-    end
-
-    context "when the attribute category doesn't exist" do
-      let(:attribute_id) { -9999 }
-
-      it { is_expected.to respond_with :not_found }
-    end
+    it_should_behave_like 'a show action', :attribute, ['name']
   end
 end
