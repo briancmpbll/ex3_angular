@@ -41,3 +41,5 @@ stealth       = Ability.create(name: 'Stealth')
 survival      = Ability.create(name: 'Survival')
 thrown        = Ability.create(name: 'Thrown')
 war           = Ability.create(name: 'War')
+
+solar = CharacterType.create(name: 'Solar Exalt')
