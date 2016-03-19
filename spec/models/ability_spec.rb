@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Ability, type: :model do
-  before :each do
+  before do
     @ability = FactoryGirl.create(:ability)
   end
 

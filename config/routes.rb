@@ -8,5 +8,6 @@ Rails.application.routes.draw do
       resources :attributes, only: [:index, :show]
     end
     resources :attributes, only: [:index]
+    resources :character_types, only: [:index, :show]
   end
 end
