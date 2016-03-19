@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Ability, type: :model do
+RSpec.describe Ability, type: :model do
   before :each do
     @ability = FactoryGirl.create(:ability)
   end

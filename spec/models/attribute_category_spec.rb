@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe AttributeCategory, type: :model do
+RSpec.describe AttributeCategory, type: :model do
   before do
     @attribute_category = FactoryGirl.create(:attribute_category)
   end

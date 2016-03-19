@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Attribute, type: :model do
+RSpec.describe Attribute, type: :model do
   before do
     @attribute = FactoryGirl.create(:attribute)
   end
