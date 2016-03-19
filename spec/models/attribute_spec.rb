@@ -9,4 +9,5 @@ describe Attribute, type: :model do
   it { is_expected.to validate_presence_of :name }
   it { is_expected.to validate_uniqueness_of :name }
   it { is_expected.to belong_to :attribute_category }
+  it { is_expected.to validate_presence_of :attribute_category }
 end
