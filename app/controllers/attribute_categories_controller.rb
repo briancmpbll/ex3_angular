@@ -16,6 +16,6 @@ class AttributeCategoriesController < ApplicationController
   end
 
   def attribute_category_params
-    params.require(:ability).permit(:name)
+    params.require(:attribute_category).permit(:name)
   end
 end

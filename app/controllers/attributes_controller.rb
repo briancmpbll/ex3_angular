@@ -26,6 +26,6 @@ class AttributesController < ApplicationController
   end
 
   def attribute_params
-    params.require(:character_attributes).permit(:name)
+    params.require(:attribute).permit(:name)
   end
 end

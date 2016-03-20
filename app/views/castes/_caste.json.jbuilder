@@ -1,0 +1,1 @@
+json.(caste, :id, :name)

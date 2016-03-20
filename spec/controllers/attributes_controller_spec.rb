@@ -22,14 +22,14 @@ RSpec.describe AttributesController, type: :controller do
     describe 'without a category' do
       let(:collection) { @attributes }
 
-      it_should_behave_like 'an index action'
+      it_should_behave_like 'a top level index action'
     end
 
     describe 'with a category' do
       let(:collection) { @attribute_categories[0].child_attributes }
       let(:parent_id) { @attribute_categories[0].id }
 
-      it_should_behave_like 'an index action', :attribute_category_id
+      it_should_behave_like 'a child index action', :attribute_category_id
     end
   end
 

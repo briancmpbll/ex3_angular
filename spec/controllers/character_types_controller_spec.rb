@@ -9,7 +9,7 @@ RSpec.describe CharacterTypesController, type: :controller do
   describe 'index' do
     let!(:collection) { FactoryGirl.create_list(:character_type, 3) }
 
-    it_should_behave_like 'an index action'
+    it_should_behave_like 'a top level index action'
   end
 
   describe 'show' do

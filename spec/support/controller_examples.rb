@@ -1,17 +1,25 @@
-shared_examples_for 'an index action' do |parent_name|
-  before do
-    if parent_name
-      get :index, parent_name => parent_id, format: :json
-    else
-      get :index, format: :json
-    end
-  end
-
+shared_examples_for 'an index action' do
   let(:results) { JSON.parse(response.body) }
 
   it { is_expected.to respond_with :success }
   it { is_expected.to render_template :index }
   it { expect(results.length).to eq(collection.length) }
+end
+
+shared_examples_for 'a top level index action' do
+  before do
+    get :index, format: :json
+  end
+
+  it_should_behave_like 'an index action'
+end
+
+shared_examples_for 'a child index action' do |parent_name|
+  before do
+    get :index, parent_name => parent_id, format: :json
+  end
+
+  it_should_behave_like 'an index action'
 end
 
 shared_examples_for 'a show action' do |name, fields|
