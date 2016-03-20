@@ -17,6 +17,7 @@ gem 'devise', '~> 3.5.6'
 group :development, :test do
   gem 'byebug', '~> 8.2.2'
   gem 'rspec-rails', '~> 3.4.2'
+  gem 'rspec-collection_matchers', '~> 1.1.2'
   gem 'factory_girl_rails', '~> 4.6.0'
   gem 'capybara', '~> 2.6.2'
   gem 'database_cleaner', '~> 1.5.1'
