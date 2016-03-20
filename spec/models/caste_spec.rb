@@ -10,4 +10,5 @@ RSpec.describe Caste, type: :model do
 
   it { is_expected.to respond_to(:character_type) }
   it { is_expected.to belong_to :character_type }
+  it { is_expected.to have_and_belong_to_many :abilities }
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160319233838) do
+ActiveRecord::Schema.define(version: 20160319235323) do
 
   create_table "abilities", force: :cascade do |t|
     t.string   "name",       null: false
@@ -20,6 +20,15 @@ ActiveRecord::Schema.define(version: 20160319233838) do
   end
 
   add_index "abilities", ["name"], name: "index_abilities_on_name", unique: true
+
+  create_table "abilities_castes", id: false, force: :cascade do |t|
+    t.integer "ability_id", null: false
+    t.integer "caste_id",   null: false
+  end
+
+  add_index "abilities_castes", ["ability_id", "caste_id"], name: "index_abilities_castes_on_ability_id_and_caste_id", unique: true
+  add_index "abilities_castes", ["ability_id"], name: "index_abilities_castes_on_ability_id"
+  add_index "abilities_castes", ["caste_id"], name: "index_abilities_castes_on_caste_id"
 
   create_table "attribute_categories", force: :cascade do |t|
     t.string   "name",       null: false
