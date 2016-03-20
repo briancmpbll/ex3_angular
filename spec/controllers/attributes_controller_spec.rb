@@ -8,6 +8,9 @@ RSpec.describe AttributesController, type: :controller do
   it { is_expected.to route(:get, '/attributes').to(action: :index) }
   it { is_expected.to route(:get, '/attributes/1').to(action: :show, id: 1) }
 
+  it { is_expected.to use_before_action(:set_attribute_category) }
+  it { is_expected.to use_before_action(:set_attribute) }
+
   describe 'index' do
     describe 'without a category' do
       it_should_behave_like 'a top level index action', :attribute
