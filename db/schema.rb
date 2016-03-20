@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160319235323) do
+ActiveRecord::Schema.define(version: 20160320171931) do
 
   create_table "abilities", force: :cascade do |t|
     t.string   "name",       null: false
@@ -29,6 +29,17 @@ ActiveRecord::Schema.define(version: 20160319235323) do
   add_index "abilities_castes", ["ability_id", "caste_id"], name: "index_abilities_castes_on_ability_id_and_caste_id", unique: true
   add_index "abilities_castes", ["ability_id"], name: "index_abilities_castes_on_ability_id"
   add_index "abilities_castes", ["caste_id"], name: "index_abilities_castes_on_caste_id"
+
+  create_table "anima_effects", force: :cascade do |t|
+    t.string   "condition",  null: false
+    t.string   "effect",     null: false
+    t.integer  "owner_id",   null: false
+    t.string   "owner_type", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "anima_effects", ["owner_type", "owner_id"], name: "index_anima_effects_on_owner_type_and_owner_id"
 
   create_table "attribute_categories", force: :cascade do |t|
     t.string   "name",       null: false
