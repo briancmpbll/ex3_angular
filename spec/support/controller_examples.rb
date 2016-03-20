@@ -4,7 +4,9 @@ shared_examples_for 'an index action' do |name|
   it { is_expected.to respond_with :success }
   it { is_expected.to render_template :index }
 
-  it { expect(assigns(collection_name)).to eq(collection) }
+  it 'should assign the right collection' do
+    expect(assigns(collection_name)).to eq(collection)
+  end
 end
 
 shared_examples_for 'a top level index action' do |name|
@@ -17,8 +19,13 @@ shared_examples_for 'a top level index action' do |name|
   it_should_behave_like 'an index action', name
 end
 
-shared_examples_for 'a child index action' do |name, parent_name|
-  let!(:parents) { FactoryGirl.create_list(parent_name, 3) }
+shared_examples_for 'a child index action' do |name, parent_name, options|
+  let(:factory_name) { (options && options[:factory_name]) ? options[:factory_name] : name }
+  let(:parent_factory_name) do
+    (options && options[:parent_factory_name]) ? options[:parent_factory_name] : parent_name
+  end
+
+  let!(:parents) { FactoryGirl.create_list(parent_factory_name, 3) }
   let!(:children) do
     children = []
     parents.each do |parent|
@@ -30,26 +37,32 @@ shared_examples_for 'a child index action' do |name, parent_name|
   let(:collection) { children[0] }
 
   before do
-    get :index, "#{parent_name}_id" => parent_id, format: :json
+    get :index, "#{parent_factory_name}_id" => parent_id, format: :json
   end
 
-  it { expect(assigns(parent_name)).to eq(parents[0]) }
+  it 'should assign the right parent' do
+    expect(assigns(parent_name)).to eq(parents[0])
+  end
 
   it_should_behave_like 'an index action', name
 end
 
-shared_examples_for 'a show action' do |name|
+shared_examples_for 'a show action' do |name, options|
+  let(:factory_name) { (options && options[:factory_name]) ? options[:factory_name] : name }
+
   before do
     get :show, id: object_id, format: :json
   end
 
   context "when the #{name} exists" do
-    let(:object) { FactoryGirl.create(name) }
+    let(:object) { FactoryGirl.create(factory_name) }
     let(:object_id) { object.id }
 
     it { is_expected.to respond_with :success }
     it { is_expected.to render_template :show }
-    it { expect(assigns(name)).to eq(object) }
+    it 'should assign the right object' do
+      expect(assigns(name)).to eq(object)
+    end
   end
 
   context "when the #{name} doesn't exist" do
