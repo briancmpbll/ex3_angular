@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe 'castes/_caste.json.jbuilder', type: :view do
-  let(:model_name) { :caste }
+RSpec.describe 'character_types/_character_type.json.jbuilder', type: :view do
+  let(:model_name) { :character_type }
 
   include_context 'partial'
 

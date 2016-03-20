@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe 'castes/show.json.jbuilder', type: :view do
-  let(:model_name) { :caste }
+RSpec.describe 'attribute_categories/show.json.jbuilder', type: :view do
+  let(:model_name) { :attribute_category }
 
   include_context 'show view'
 
