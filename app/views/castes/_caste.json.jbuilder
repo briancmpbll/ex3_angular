@@ -1,1 +1,1 @@
-json.(caste, :id, :name)
+json.call(caste, :id, :name)

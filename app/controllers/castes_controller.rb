@@ -13,7 +13,8 @@ class CastesController < ApplicationController
   private
 
   def set_character_type
-    @character_type = CharacterType.includes(:castes).find(params[:character_type_id])
+    @character_type = CharacterType.includes(:castes)
+                                   .find(params[:character_type_id])
   end
 
   def set_caste

@@ -20,9 +20,14 @@ shared_examples_for 'a top level index action' do |name|
 end
 
 shared_examples_for 'a child index action' do |name, parent_name, options|
-  let(:factory_name) { (options && options[:factory_name]) ? options[:factory_name] : name }
+  let(:factory_name) do
+    return options[:factory_name] if options && options[:factory_name]
+    name
+  end
   let(:parent_factory_name) do
-    (options && options[:parent_factory_name]) ? options[:parent_factory_name] : parent_name
+    return options[:parent_factory_name] if options &&
+                                            options[:parent_factory_name]
+    parent_name
   end
 
   let!(:parents) { FactoryGirl.create_list(parent_factory_name, 3) }
@@ -48,7 +53,10 @@ shared_examples_for 'a child index action' do |name, parent_name, options|
 end
 
 shared_examples_for 'a show action' do |name, options|
-  let(:factory_name) { (options && options[:factory_name]) ? options[:factory_name] : name }
+  let(:factory_name) do
+    return options[:factory_name] if options && options[:factory_name]
+    name
+  end
 
   before do
     get :show, id: object_id, format: :json

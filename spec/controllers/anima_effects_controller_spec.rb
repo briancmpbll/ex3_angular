@@ -18,15 +18,18 @@ RSpec.describe AnimaEffectsController, type: :controller do
 
   describe 'caste index' do
     it_should_behave_like 'a child index action', :anima_effect, :owner,
-                          factory_name: :caste_anima_effect, parent_factory_name: :caste
+                          factory_name: :caste_anima_effect,
+                          parent_factory_name: :caste
   end
 
   describe 'character type index' do
     it_should_behave_like 'a child index action', :anima_effect, :owner,
-                          factory_name: :type_anima_effect, parent_factory_name: :character_type
+                          factory_name: :type_anima_effect,
+                          parent_factory_name: :character_type
   end
 
   describe 'show' do
-    it_should_behave_like 'a show action', :anima_effect, factory_name: :caste_anima_effect
+    it_should_behave_like 'a show action', :anima_effect,
+                          factory_name: :caste_anima_effect
   end
 end

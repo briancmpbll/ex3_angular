@@ -1,10 +1,13 @@
 AllCops:
-  Excludes:
+  Exclude:
     - db/schema.rb
     - db/migrate/*
     - bin/*
+    - config/initializers/*
+    - config/application.rb
+    - spec/teaspoon_env.rb
+    - Rakefile
     - Gemfile
-  RailsEnabled: true
 
 Style/ClassAndModuleChildren:
   EnforcedStyle: compact
@@ -16,4 +19,4 @@ Metrics/MethodLength:
   Max: 20
 
 Metrics/LineLength:
-  Max: 100
+  Max: 80

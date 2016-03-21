@@ -13,8 +13,10 @@ class AnimaEffectsController < ApplicationController
   private
 
   def set_owner
-    @owner = Caste.includes(:anima_effects).find(params[:caste_id]) if params[:caste_id]
-    @owner ||= CharacterType.includes(:anima_effects).find(params[:character_type_id])
+    @owner = Caste.includes(:anima_effects)
+                  .find(params[:caste_id]) if params[:caste_id]
+    @owner ||= CharacterType.includes(:anima_effects)
+                            .find(params[:character_type_id])
   end
 
   def set_anima_effect

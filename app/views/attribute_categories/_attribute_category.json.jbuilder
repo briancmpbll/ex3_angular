@@ -1,1 +1,1 @@
-json.(attribute_category, :id, :name)
+json.call(attribute_category, :id, :name)

@@ -17,7 +17,8 @@ RSpec.describe AttributesController, type: :controller do
     end
 
     describe 'with a category' do
-      it_should_behave_like 'a child index action', :attribute, :attribute_category
+      it_should_behave_like 'a child index action', :attribute,
+                            :attribute_category
     end
   end
 

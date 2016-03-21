@@ -1,1 +1,1 @@
-json.(anima_effect, :condition, :effect)
+json.call(anima_effect, :condition, :effect)

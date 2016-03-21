@@ -18,13 +18,15 @@ feature 'signing up', js: true do
   end
 
   scenario 'with a short password' do
-    bad_user = FactoryGirl.build(:user, password: 'test', password_confirmation: 'test')
+    bad_user = FactoryGirl.build(:user, password: 'test',
+                                        password_confirmation: 'test')
     sign_up_and_expect_alert bad_user, 'Password is too short'
   end
 
   scenario 'with a bad password confirmation' do
     bad_user = FactoryGirl.build(:user, password_confirmation: '1234abcd')
-    sign_up_and_expect_alert bad_user, "Password Confirmation doesn't match Password"
+    sign_up_and_expect_alert bad_user,
+                             "Password Confirmation doesn't match Password"
   end
 
   scenario 'with an existing email' do

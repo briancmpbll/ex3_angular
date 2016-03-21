@@ -1,1 +1,1 @@
-json.(character_type, :id, :name)
+json.call(character_type, :id, :name)

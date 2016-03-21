@@ -1,1 +1,1 @@
-json.(ability, :id, :name)
+json.call(ability, :id, :name)

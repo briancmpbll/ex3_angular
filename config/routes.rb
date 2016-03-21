@@ -14,7 +14,8 @@ Rails.application.routes.draw do
     end
     resources :attributes, only: [:index]
 
-    resources :character_types, only: [:index, :show], concerns: :anima_effect_owner do
+    resources :character_types, only: [:index, :show],
+                                concerns: :anima_effect_owner do
       resources :castes, only: [:index, :show], concerns: :anima_effect_owner
     end
   end

@@ -18,7 +18,8 @@ shared_examples_for 'an index view' do
 
   let(:plural) { model_name.to_s.pluralize }
   let(:collection) do
-    FactoryGirl.create_list((defined? factory_name) ? factory_name : model_name, 3)
+    FactoryGirl.create_list((defined? factory_name) ? factory_name : model_name,
+                            3)
   end
 
   it { is_expected.to have_exactly(collection.length).items }

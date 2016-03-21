@@ -2,7 +2,9 @@ require 'rails_helper'
 
 RSpec.describe CharacterTypesController, type: :controller do
   it { is_expected.to route(:get, '/character_types').to(action: :index) }
-  it { is_expected.to route(:get, '/character_types/1').to(action: :show, id: 1) }
+  it 'should route the show action correctly' do
+    is_expected.to route(:get, '/character_types/1').to(action: :show, id: 1)
+  end
 
   it { is_expected.to use_before_action(:set_character_type) }
 
