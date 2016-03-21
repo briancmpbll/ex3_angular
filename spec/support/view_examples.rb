@@ -3,7 +3,9 @@ shared_context 'parse JSON' do
 end
 
 shared_context 'single item view' do
-  let(:object) { FactoryGirl.create(model_name) }
+  let(:object) do
+    FactoryGirl.create((defined? factory_name) ? factory_name : model_name)
+  end
 end
 
 shared_examples_for 'an index view' do
@@ -15,7 +17,9 @@ shared_examples_for 'an index view' do
   end
 
   let(:plural) { model_name.to_s.pluralize }
-  let(:collection) { FactoryGirl.create_list(model_name, 3) }
+  let(:collection) do
+    FactoryGirl.create_list((defined? factory_name) ? factory_name : model_name, 3)
+  end
 
   it { is_expected.to have_exactly(collection.length).items }
 end
