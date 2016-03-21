@@ -6,7 +6,7 @@ RSpec.describe Ability, type: :model do
   end
 
   it_should_behave_like 'a timestamped model'
-  it_should_behave_like 'a named model'
+  it_should_behave_like 'a uniquely named model'
 
   it { is_expected.to have_and_belong_to_many :castes }
 end

@@ -6,7 +6,7 @@ RSpec.describe Attribute, type: :model do
   end
 
   it_should_behave_like 'a timestamped model'
-  it_should_behave_like 'a named model'
+  it_should_behave_like 'a uniquely named model'
 
   it { is_expected.to respond_to(:attribute_category) }
   it { is_expected.to belong_to :attribute_category }

@@ -6,7 +6,7 @@ RSpec.describe AttributeCategory, type: :model do
   end
 
   it_should_behave_like 'a timestamped model'
-  it_should_behave_like 'a named model'
+  it_should_behave_like 'a uniquely named model'
 
   it { is_expected.to respond_to(:child_attributes) }
   it { is_expected.to have_many(:child_attributes).dependent(:destroy) }

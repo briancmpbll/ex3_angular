@@ -1,6 +1,11 @@
 shared_examples_for 'a named model' do
   it { is_expected.to respond_to :name }
   it { is_expected.to validate_presence_of :name }
+end
+
+shared_examples_for 'a uniquely named model' do
+  it_should_behave_like 'a named model'
+
   it { is_expected.to validate_uniqueness_of :name }
 end
 
