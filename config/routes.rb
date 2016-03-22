@@ -18,5 +18,7 @@ Rails.application.routes.draw do
                                 concerns: :anima_effect_owner do
       resources :castes, only: [:index, :show], concerns: :anima_effect_owner
     end
+
+    resources :characters, only: [:index, :show]
   end
 end

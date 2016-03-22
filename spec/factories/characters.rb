@@ -1,10 +1,9 @@
 FactoryGirl.define do
   factory :character do
-    name 'MyString'
-    concept 'MyString'
-    caste nil
-    willpower 1
-    essence 1
-    supernal_ability nil
+    sequence(:name) { |i| "Character#{i}" }
+    concept 'An awesome character'
+    association :caste
+    willpower { rand(1..10) }
+    essence { rand(1..5) }
   end
 end
