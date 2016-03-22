@@ -7,7 +7,8 @@ app.factory 'UserService', [
   'changeCase'
   ($state, Auth, Flash, changeCase)->
     badCredsError = 'Invalid username/password combination.'
-    unknownError = 'An unknown error occurred. Please try again later or contact the administrator.'
+    unknownError = 'An unknown error occurred. Please try again later or contact
+                   the administrator.'
 
     formatMessages = (field, messages)->
       errors = for message in messages
@@ -45,7 +46,8 @@ app.factory 'UserService', [
             errors = for field, messages of error.data.errors
               formatMessages(field, messages)
 
-          message = if errors != '' then "<ul>#{errors.join(' ')}</ul>" else unknownError
+          message = if errors != '' then "<ul>#{errors.join(' ')}</ul>" else
+            unknownError
 
           Flash.create('danger', message)
         )

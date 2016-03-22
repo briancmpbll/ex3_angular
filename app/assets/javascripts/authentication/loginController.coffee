@@ -1,7 +1,8 @@
 app = angular.module 'ex3-gen'
 
 badCredsError = 'Invalid username/password combination.'
-unknownError = 'An unknown error occurred. Please try again later or contact the administrator.'
+unknownError = 'An unknown error occurred. Please try again later or contact the
+                administrator.'
 
 app.controller 'LoginController', [
   '$scope'
