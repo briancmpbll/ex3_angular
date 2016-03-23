@@ -14,7 +14,7 @@ RSpec.describe Character, type: :model do
 
   it { is_expected.to belong_to :caste }
   it { is_expected.to have_one(:character_type).through(:caste) }
-  it { is_expected.to have_many(:character_abilities) }
+  it { is_expected.to have_many(:character_abilities).dependent(:destroy) }
   it { is_expected.to have_many(:abilities).through(:character_abilities) }
 
   it { is_expected.to validate_inclusion_of(:willpower).in_range(1..10) }

@@ -1,4 +1,4 @@
-# Model for a character's ability ratings.
+# Model for a character's ability rating.
 class CharacterAbility < ActiveRecord::Base
   belongs_to :character
   belongs_to :ability
