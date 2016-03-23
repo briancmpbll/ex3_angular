@@ -2,6 +2,7 @@ FactoryGirl.define do
   factory :anima_effect do
     condition 'Spend 2 motes'
     effect 'Kill everything'
+    association :owner, factory: :character_type
 
     factory :type_anima_effect do
       association :owner, factory: :character_type

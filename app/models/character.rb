@@ -3,6 +3,9 @@ class Character < ActiveRecord::Base
   belongs_to :caste
   has_one :character_type, through: :caste
 
+  has_many :character_abilities
+  has_many :abilities, through: :character_abilities
+
   validates_presence_of :name
   validates_presence_of :caste
 

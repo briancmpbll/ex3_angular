@@ -11,4 +11,8 @@ RSpec.describe 'characters/show.json.jbuilder', type: :view do
   it { expect(results['concept']).to eq(object.concept) }
   it { expect(results['willpower']).to eq(object.willpower) }
   it { expect(results['essence']).to eq(object.essence) }
+
+  it "should include the character's abilities" do
+    expect(results['abilities'].length).to eq(object.abilities.length)
+  end
 end

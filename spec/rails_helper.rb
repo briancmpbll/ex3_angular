@@ -29,6 +29,13 @@ RSpec.configure do |config|
   end
 
   config.before(:suite) do
+    begin
+      DatabaseCleaner.start
+      FactoryGirl.lint
+    ensure
+      DatabaseCleaner.clean
+    end
+
     DatabaseCleaner.clean_with :truncation
     DatabaseCleaner.clean_with :transaction
   end
