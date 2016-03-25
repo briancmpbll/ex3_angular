@@ -12,7 +12,8 @@ class CharactersController < ApplicationController
   private
 
   def set_character
-    @character = Character.includes(:abilities)
+    @character = Character.includes(character_abilities: [:ability],
+                                    character_attributes: [:attribute_data])
                           .find(params[:id])
   end
 end

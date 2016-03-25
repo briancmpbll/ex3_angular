@@ -7,6 +7,14 @@ Caste.all.each do |caste|
     essence: rand(1..5)
   )
 
+  Attribute.all.each do |attribute|
+    CharacterAttribute.create(
+      character: character,
+      attribute_data: attribute,
+      value: rand(1..5)
+    )
+  end
+
   Ability.all.each do |ability|
     CharacterAbility.create(
       character: character,

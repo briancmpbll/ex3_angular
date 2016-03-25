@@ -4,7 +4,7 @@ class Character < ActiveRecord::Base
   has_one :character_type, through: :caste
 
   has_many :character_abilities, dependent: :destroy
-  has_many :abilities, through: :character_abilities
+  has_many :character_attributes, dependent: :destroy
 
   validates_presence_of :name
   validates_presence_of :caste
