@@ -10,7 +10,7 @@ describe ' the characters controller', ->
       {id: 3, name: 'Test 3', concept: 'Concept 3'}
     ]
 
-    @charactersController = @controller('CharactersController',
+    @characterIndexController = @controller('CharacterIndexController',
       '$scope': @scope
       'CharacterService': @CharacterService
     )

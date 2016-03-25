@@ -11,7 +11,10 @@ feature 'the character index', js: true do
     expect(page.find('ui-view h1')).to have_text 'Characters'
 
     Character.all.each do |character|
-      expect(page).to have_text character.name
+      within '.index-list' do
+        expect(page).to have_link character.name,
+                                  href: "#/characters/#{character.id}"
+      end
     end
   end
 end

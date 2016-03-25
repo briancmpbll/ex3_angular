@@ -2,6 +2,8 @@
 
 <ul class="index-list">
   <li ng-repeat="character in characters">
-    {{character.name}}
+    <a ui-sref="characters.detail({id: character.id})">
+      {{character.name}}
+    </a>
   </li>
 </ul>

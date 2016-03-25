@@ -1,6 +1,6 @@
 app = angular.module('ex3-gen')
 
-app.controller('CharactersController', [
+app.controller('CharacterIndexController', [
   '$scope',
   'CharacterService'
   ($scope, CharacterService)->

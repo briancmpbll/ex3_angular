@@ -39,7 +39,12 @@ app.config [
       .state('characters'
         url: '/characters'
         templateUrl: 'characters/_index.html'
-        controller: 'CharactersController'
+        controller: 'CharacterIndexController'
+      )
+      .state('characters.detail'
+        url: '/:id'
+        templateUrl: 'characters/_show.html'
+        controller: 'CharacterDetailController'
       )
 
     $urlRouterProvider.otherwise('index')
