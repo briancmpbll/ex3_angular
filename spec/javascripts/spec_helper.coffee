@@ -68,6 +68,10 @@ beforeEach ->
     inject (UserService)->
       @UserService = UserService
 
+  @injectCharacterService = ->
+    inject (CharacterService)->
+      @CharacterService = CharacterService
+
   @getCompiledElement = (elementName)=>
     element = angular.element("<#{elementName}></#{elementName}>")
     compiledElement = @compile(element)(@scope)
@@ -87,6 +91,18 @@ beforeEach ->
         service.logout = jasmine.createSpy('logout')
         service.loggedIn = jasmine.createSpy('loggedIn').and.callFake( ->
           not angular.equals(@data.currentUser, {})
+        )
+        service
+      )
+      return
+
+  @mockCharacterService = ->
+    module ($provide)->
+      $provide.factory('CharacterService', ->
+        service = {}
+        service.data = {}
+        service.query = jasmine.createSpy('query').and.callFake( ->
+          service.data
         )
         service
       )
