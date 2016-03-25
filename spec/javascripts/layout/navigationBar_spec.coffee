@@ -19,8 +19,16 @@ describe 'the navigation bar', ->
 
   it 'should have all the menu elements', ->
     expect(@directiveElem).toHaveElements([
-      '#nav-home', '#nav-users', '#nav-user-dropdown', '#nav-login', '#nav-signup'
+      '#nav-home'
+      '#nav-users'
+      '#nav-user-dropdown'
+      '#nav-login'
+      '#nav-signup'
+      '#nav-characters'
     ])
+
+  it 'should link to the characters page', ->
+    expect(@directiveElem.find('#nav-characters a')).toHaveSref('characters')
 
   it 'should call loggedIn on compilation', ->
     expect(@UserService.loggedIn).toHaveBeenCalled()

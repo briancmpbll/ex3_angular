@@ -4,6 +4,7 @@ app = angular.module 'ex3-gen', [
   'Devise'
   'ngFlash'
   'ngAnimate'
+  'ngResource'
   'change-case'
 ]
 
@@ -34,6 +35,11 @@ app.config [
         templateUrl: 'authentication/_signup.html'
         controller: 'SignupController'
         onEnter: redirectIfSignedIn
+      )
+      .state('characters'
+        url: '/characters'
+        templateUrl: 'characters/_index.html'
+        controller: 'CharactersController'
       )
 
     $urlRouterProvider.otherwise('index')

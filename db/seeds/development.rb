@@ -1,6 +1,6 @@
 Caste.all.each do |caste|
   character = Character.create(
-    name: 'Test Character',
+    name: "#{caste.name} Character",
     concept: 'An awesome character',
     caste: caste,
     willpower: rand(1..10),

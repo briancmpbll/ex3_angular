@@ -48,6 +48,13 @@ beforeEach ->
           result.pass = not expected.some (elem)-> actual.find(elem).length == 0
           result
       }
+    toHaveSref: (util, customEqualityTesters)->
+      {
+        compare: (actual, expected)->
+          result = {}
+          result.pass = actual.attr('ui-sref') == expected
+          result
+      }
 
   @injectCommon = ->
     inject ($rootScope, $compile, $httpBackend, $state, $controller)->
