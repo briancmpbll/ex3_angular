@@ -24,14 +24,10 @@ end
 
 RSpec::Matchers.define :have_character_links do |expected|
   match do |actual|
-    matched = true
     expected.each do |character|
-      unless actual.find('.index-list').has_link?(
+      return false unless actual.find('.index-list').has_link?(
         character.name, href: "#/characters/#{character.id}")
-        matched = false
-        break
-      end
     end
-    matched
+    true
   end
 end
