@@ -1,3 +1,9 @@
+shared_context 'top level index action' do
+  before do
+    get :index, format: :json
+  end
+end
+
 shared_examples_for 'an index action' do |name|
   let(:collection_name) { name.to_s.pluralize }
 
@@ -12,9 +18,7 @@ end
 shared_examples_for 'a top level index action' do |name|
   let!(:collection) { FactoryGirl.create_list(name, 3) }
 
-  before do
-    get :index, format: :json
-  end
+  include_context 'top level index action'
 
   it_should_behave_like 'an index action', name
 end

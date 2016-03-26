@@ -4,6 +4,7 @@ class CharactersController < ApplicationController
 
   def index
     @characters = Character.includes(:caste).all
+    @total = Character.all.count
   end
 
   def show

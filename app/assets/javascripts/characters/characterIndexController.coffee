@@ -6,5 +6,14 @@ app.controller('CharacterIndexController', [
   '$scope',
   'CharacterService'
   ($scope, CharacterService)->
-    $scope.characters = CharacterService.query()
+    getCharacters = ->
+      CharacterService.query((results)->
+        $scope.characters = results.characters
+        $scope.total = results.total
+      )
+
+    $scope.characters = []
+    $scope.total = 0
+
+    getCharacters()
 ])

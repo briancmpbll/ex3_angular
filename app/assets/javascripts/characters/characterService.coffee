@@ -5,5 +5,7 @@ app = angular.module('ex3-gen')
 app.factory('CharacterService', [
   '$resource',
   ($resource)->
-    $resource('/characters/:id.json')
+    $resource('/characters/:id.json', {},
+      query: { method: 'GET', isArray: false }
+    )
 ])

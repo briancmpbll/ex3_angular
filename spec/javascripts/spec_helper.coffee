@@ -101,11 +101,14 @@ beforeEach ->
 
   @mockCharacterService = ->
     module ($provide)->
-      $provide.factory('CharacterService', ->
+      $provide.factory('CharacterService', ($q)->
         service = {}
         service.data = {}
-        service.query = jasmine.createSpy('query').and.callFake( ->
-          service.data
+        service.query = jasmine.createSpy('query').and.callFake(
+          (success, error)->
+            deferred = $q.defer()
+            deferred.promise.then(success, error)
+            deferred.resolve(service.data)
         )
         service
       )
