@@ -1,3 +1,5 @@
+'use strict'
+
 describe 'the user service', ->
   badCredsError = 'Invalid username/password combination.'
   unknownError = 'An unknown error occurred. Please try again later

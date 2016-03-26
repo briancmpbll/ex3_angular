@@ -1,3 +1,5 @@
+'use strict'
+
 describe 'the login controller', ->
   beforeEach ->
     @mockUserService()

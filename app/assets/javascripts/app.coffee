@@ -1,3 +1,5 @@
+'use strict'
+
 app = angular.module 'ex3-gen', [
   'ui.router'
   'templates'

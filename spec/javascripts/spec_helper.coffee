@@ -2,6 +2,9 @@
 #= require support/bind-poly
 #= require application
 #= require angular-mocks/angular-mocks
+
+'use strict'
+
 beforeEach module 'ex3-gen'
 
 beforeEach ->

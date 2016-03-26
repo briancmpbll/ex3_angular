@@ -1,3 +1,5 @@
+'use strict'
+
 describe ' the characters controller', ->
   beforeEach ->
     @mockCharacterService()

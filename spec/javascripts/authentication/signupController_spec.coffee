@@ -1,3 +1,5 @@
+'use strict'
+
 describe 'the signup controller', ->
   beforeEach ->
     @mockUserService()

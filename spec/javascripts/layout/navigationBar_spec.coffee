@@ -1,3 +1,5 @@
+'use strict'
+
 describe 'the navigation bar', ->
   beforeEach ->
     @mockUserService()
