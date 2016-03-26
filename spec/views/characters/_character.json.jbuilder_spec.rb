@@ -11,4 +11,8 @@ RSpec.describe 'characters/_character.json.jbuilder', type: :view do
   it { expect(results['concept']).to eq(object.concept) }
   it { expect(results['willpower']).to eq(object.willpower) }
   it { expect(results['essence']).to eq(object.essence) }
+
+  it 'should include an icon path' do
+    expect(results['icon']).to_not be_nil
+  end
 end

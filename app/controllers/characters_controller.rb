@@ -3,7 +3,7 @@ class CharactersController < ApplicationController
   before_action :set_character, only: [:show]
 
   def index
-    @characters = Character.all
+    @characters = Character.includes(:caste).all
   end
 
   def show
@@ -12,7 +12,8 @@ class CharactersController < ApplicationController
   private
 
   def set_character
-    @character = Character.includes(character_abilities: [:ability],
+    @character = Character.includes(:caste,
+                                    character_abilities: [:ability],
                                     character_attributes: [:attribute_data])
                           .find(params[:id])
   end

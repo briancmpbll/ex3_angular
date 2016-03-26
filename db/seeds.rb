@@ -45,27 +45,27 @@ war           = Ability.create(name: 'War')
 solar = CharacterType.create(name: 'Solar Exalt')
 
 dawn = Caste.create(
-  name: 'Dawn Caste',
+  name: 'Dawn',
   character_type: solar,
   abilities: [archery, awareness, brawl, martial_arts, dodge, melee, resistence,
               thrown, war])
 zenith = Caste.create(
-  name: 'Zenith Caste',
+  name: 'Zenith',
   character_type: solar,
   abilities: [athletics, integrity, performance, lore, presence, resistence,
               survival, war])
 twilight = Caste.create(
-  name: 'Twilight Caste',
+  name: 'Twilight',
   character_type: solar,
   abilities: [bureacracy, craft, integrity, investigation, linguistics, lore,
               medicine, occult])
 night = Caste.create(
-  name: 'Night Caste',
+  name: 'Night',
   character_type: solar,
   abilities: [athletics, awareness, dodge, investigation, larceny, ride,
               stealth, socialize])
 eclipse = Caste.create(
-  name: 'Eclipse Caste',
+  name: 'Eclipse',
   character_type: solar,
   abilities: [bureacracy, larceny, linguistics, occult, presence, ride, sail,
               socialize])

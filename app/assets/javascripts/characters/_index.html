@@ -4,6 +4,7 @@
 
 <ul class="index-list">
   <li dir-paginate="character in characters | itemsPerPage: 10">
+    <img alt="Caste Icon" ng-src={{character.icon}}>
     <a ui-sref="characters.detail({id: character.id})">
       {{character.name}}
     </a>
