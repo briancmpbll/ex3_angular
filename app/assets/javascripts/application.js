@@ -9,4 +9,5 @@
 //= require angular-flash-alert
 //= require angular-animate
 //= require change-case
+//= require angularUtils-pagination
 //= require_tree .

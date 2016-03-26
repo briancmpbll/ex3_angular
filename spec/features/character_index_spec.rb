@@ -5,16 +5,17 @@ feature 'the character index', js: true do
     Rails.application.load_seed
   end
 
+  given(:characters) { Character.all }
+
   scenario 'listing characters' do
     visit '#/characters'
 
     expect(page.find('ui-view h1')).to have_text 'Characters'
 
-    Character.all.each do |character|
-      within '.index-list' do
-        expect(page).to have_link character.name,
-                                  href: "#/characters/#{character.id}"
-      end
-    end
+    expect(page).to have_character_links(characters[0, 10])
+
+    first('.pagination').click_link('2')
+
+    expect(page).to have_character_links(characters[10, 10])
   end
 end

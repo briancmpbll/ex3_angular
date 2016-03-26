@@ -1,9 +1,13 @@
 <h1>Characters</h1>
 
+<dir-pagination-controls></dir-pagination-controls>
+
 <ul class="index-list">
-  <li ng-repeat="character in characters">
+  <li dir-paginate="character in characters | itemsPerPage: 10">
     <a ui-sref="characters.detail({id: character.id})">
       {{character.name}}
     </a>
   </li>
 </ul>
+
+<dir-pagination-controls></dir-pagination-controls>

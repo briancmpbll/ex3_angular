@@ -6,6 +6,7 @@ app = angular.module 'ex3-gen', [
   'ngAnimate'
   'ngResource'
   'change-case'
+  'angularUtils.directives.dirPagination'
 ]
 
 app.config [

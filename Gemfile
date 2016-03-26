@@ -25,6 +25,7 @@ group :development, :test do
   gem 'shoulda-matchers', '~> 3.1.1'
   gem 'teaspoon-jasmine', '~> 2.3.4'
   gem 'phantomjs', '~> 2.1.1.0'
+  gem 'faker', '~> 1.6.3'
 end
 
 group :development do

@@ -184,7 +184,7 @@ if %w(development test).include?(Rails.env.downcase)
   Caste.all.each do |caste|
     5.times do
       character = Character.create(
-        name: "#{caste.name} Character",
+        name: Faker::Name.name,
         concept: 'An awesome character',
         caste: caste,
         willpower: rand(1..10),
