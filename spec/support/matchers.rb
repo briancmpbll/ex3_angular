@@ -25,8 +25,11 @@ end
 RSpec::Matchers.define :have_character_links do |expected|
   match do |actual|
     expected.each do |character|
-      return false unless actual.find('.index-list').has_link?(
-        character.name, href: "#/characters/#{character.id}")
+      index_list = actual.find('.index-list')
+      link = index_list.find_link(character.name,
+                                  href: "#/characters/#{character.id}")
+      return false unless link.find(:xpath, '../img')['src']
+                          .include?(character.caste.name.downcase)
     end
     true
   end
