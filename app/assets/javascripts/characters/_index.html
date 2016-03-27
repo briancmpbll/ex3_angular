@@ -1,9 +1,11 @@
 <h1>Characters</h1>
 
-<dir-pagination-controls></dir-pagination-controls>
+<dir-pagination-controls on-page-change="changePage(newPageNumber)">
+</dir-pagination-controls>
 
 <ul class="index-list">
-  <li dir-paginate="character in characters | itemsPerPage: 10">
+  <li dir-paginate="character in characters | itemsPerPage: charactersPerPage"
+  total-items="totalCharacters" current-page="currentPage">
     <img alt="Caste Icon" ng-src={{character.icon}}>
     <a ui-sref="characters.detail({id: character.id})">
       {{character.name}}
@@ -11,4 +13,5 @@
   </li>
 </ul>
 
-<dir-pagination-controls></dir-pagination-controls>
+<dir-pagination-controls on-page-change="changePage(newPageNumber)">
+</dir-pagination-controls>

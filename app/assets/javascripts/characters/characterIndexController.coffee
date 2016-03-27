@@ -6,14 +6,20 @@ app.controller('CharacterIndexController', [
   '$scope',
   'CharacterService'
   ($scope, CharacterService)->
-    getCharacters = ->
-      CharacterService.query((results)->
+    getCharacters = (page)->
+      CharacterService.query({page: page}, (results)->
         $scope.characters = results.characters
-        $scope.total = results.total
+        $scope.totalCharacters = results.total
+        $scope.currentPage = page
       )
 
     $scope.characters = []
-    $scope.total = 0
+    $scope.totalCharacters = 0
+    $scope.currentPage = 0
+    $scope.charactersPerPage = 10
 
-    getCharacters()
+    $scope.changePage = (page)->
+      getCharacters(page)
+
+    getCharacters(1)
 ])

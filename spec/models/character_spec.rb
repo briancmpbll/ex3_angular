@@ -20,4 +20,8 @@ RSpec.describe Character, type: :model do
 
   it { is_expected.to validate_inclusion_of(:willpower).in_range(1..10) }
   it { is_expected.to validate_inclusion_of(:essence).in_range(1..5) }
+
+  it 'should have the right per page attribute' do
+    expect(subject.class.per_page).to eq(10)
+  end
 end

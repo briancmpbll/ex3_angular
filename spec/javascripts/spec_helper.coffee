@@ -105,7 +105,7 @@ beforeEach ->
         service = {}
         service.data = {}
         service.query = jasmine.createSpy('query').and.callFake(
-          (success, error)->
+          (params, success, error)->
             deferred = $q.defer()
             deferred.promise.then(success, error)
             deferred.resolve(service.data)

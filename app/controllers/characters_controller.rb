@@ -3,7 +3,8 @@ class CharactersController < ApplicationController
   before_action :set_character, only: [:show]
 
   def index
-    @characters = Character.includes(:caste).all
+    page = params[:page] || 1
+    @characters = Character.includes(:caste).page(page)
     @total = Character.all.count
   end
 

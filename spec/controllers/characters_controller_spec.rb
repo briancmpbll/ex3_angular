@@ -7,16 +7,34 @@ RSpec.describe CharactersController, type: :controller do
   it { is_expected.to use_before_action(:set_character) }
 
   describe 'index' do
-    let!(:characters) { FactoryGirl.create_list(:character, 5) }
+    let!(:characters) { FactoryGirl.create_list(:character, 15) }
 
-    include_context 'top level index action'
+    describe 'without a page specified' do
+      before do
+        get :index, format: :json
+      end
 
-    it 'should assign the right collection' do
-      expect(assigns(:characters)).to eq(characters)
+      it 'should assign the first page' do
+        expect(assigns(:characters)).to eq(characters[0, 10])
+      end
+
+      it 'should assign the right total' do
+        expect(assigns(:total)).to eq(characters.length)
+      end
     end
 
-    it 'should assign the right total' do
-      expect(assigns(:total)).to eq(characters.length)
+    describe 'with a page specified' do
+      before do
+        get :index, format: :json, page: 2
+      end
+
+      it 'should assign the specified page' do
+        expect(assigns(:characters)).to eq(characters[10, 10])
+      end
+
+      it 'should assign the right total' do
+        expect(assigns(:total)).to eq(characters.length)
+      end
     end
   end
 

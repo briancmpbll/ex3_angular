@@ -1,5 +1,7 @@
 # Model for a character
 class Character < ActiveRecord::Base
+  self.per_page = 10
+
   belongs_to :caste
   has_one :character_type, through: :caste
 

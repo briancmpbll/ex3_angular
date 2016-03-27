@@ -13,6 +13,7 @@ gem 'foreman', '~> 0.78.0'
 gem 'responders', '~> 2.1.1'
 gem 'angular-rails-templates', '~> 1.0.0'
 gem 'devise', '~> 3.5.6'
+gem 'will_paginate', '~> 3.0.7'
 
 group :development, :test do
   gem 'byebug', '~> 8.2.2'
