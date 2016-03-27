@@ -5,7 +5,7 @@ feature 'the character index', js: true do
     Rails.application.load_seed
   end
 
-  given(:characters) { Character.all }
+  given(:characters) { Character.all.order(:name) }
 
   scenario 'listing characters' do
     visit '#/characters'

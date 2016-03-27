@@ -7,7 +7,10 @@ RSpec.describe CharactersController, type: :controller do
   it { is_expected.to use_before_action(:set_character) }
 
   describe 'index' do
-    let!(:characters) { FactoryGirl.create_list(:character, 15) }
+    let!(:characters) do
+      FactoryGirl.create_list(:character, 15)
+      Character.all.order(:name)
+    end
 
     describe 'without a page specified' do
       before do

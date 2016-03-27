@@ -21,18 +21,18 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li id="nav-users" ng-show="loggedIn">
-            <a href="#">Users</a>
+            <a href="">Users</a>
           </li>
           <li id="nav-user-dropdown" ng-show="loggedIn" class="dropdown">
-            <a id="userDropdown" class="dropdown-toggle"
+            <a href="" id="userDropdown" class="dropdown-toggle"
               data-toggle="dropdown">
               {{data.currentUser.username}} <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
-              <li><a>Profile</a></li>
-              <li><a>Settings</a></li>
+              <li><a href="">Profile</a></li>
+              <li><a href="">Settings</a></li>
               <li class="divider"></li>
-              <li><a ng-click="logout()">Log Out</a></li>
+              <li><a href="" ng-click="logout()">Log Out</a></li>
             </ul>
           </li>
           <li id="nav-login" ng-hide="loggedIn">

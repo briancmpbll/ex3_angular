@@ -4,7 +4,7 @@ class CharactersController < ApplicationController
 
   def index
     page = params[:page] || 1
-    @characters = Character.includes(:caste).page(page)
+    @characters = Character.includes(:caste).page(page).order(:name)
     @total = Character.all.count
   end
 
