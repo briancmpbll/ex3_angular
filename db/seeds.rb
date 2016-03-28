@@ -182,7 +182,7 @@ AnimaEffect.create(
 
 if %w(development test).include?(Rails.env.downcase)
   Caste.all.each do |caste|
-    5.times do
+    3.times do
       character = Character.create(
         name: Faker::Name.name,
         concept: 'An awesome character',

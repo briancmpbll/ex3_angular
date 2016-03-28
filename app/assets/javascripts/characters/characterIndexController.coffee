@@ -11,19 +11,23 @@ app.controller('CharacterIndexController', [
       CharacterService.query({page: page}, (results)->
         $scope.characters = results.characters
         $scope.totalCharacters = results.total
-        $scope.currentPage = page
-        $location.search('page', page)
       )
+
+    getQueryParams = ->
+      search = $location.search()
+      $scope.currentPage = if search? and search.page? then search.page else 1
+      getCharacters($scope.currentPage)
 
     search = $location.search()
 
     $scope.characters = []
     $scope.totalCharacters = 0
-    $scope.currentPage = if search? and search.page? then search.page else 1
     $scope.charactersPerPage = 10
 
     $scope.changePage = (page)->
-      getCharacters(page)
+      $location.search('page', page)
 
-    getCharacters($scope.currentPage)
+    getQueryParams()
+
+    $scope.$on('$locationChangeSuccess', getQueryParams)
 ])

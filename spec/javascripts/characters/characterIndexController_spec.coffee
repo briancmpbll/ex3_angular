@@ -25,11 +25,11 @@ describe ' the characters controller', ->
 
   describe 'with a page set in the query', ->
     beforeEach ->
-      @page = 2
+      @location.search('page', 2)
       @createController()
 
     it 'should set the correct page', ->
-      expect(@scope.currentPage).toEqual(@page)
+      expect(@scope.currentPage).toEqual(2)
 
   describe 'without query params', ->
     beforeEach ->
@@ -51,9 +51,6 @@ describe ' the characters controller', ->
     it 'should set scope total variable', ->
       expect(@scope.totalCharacters).toEqualData(@CharacterService.data.total)
 
-    it 'should set the page query param', ->
-      expect(@location.search).toHaveBeenCalledWith('page', 1)
-
     describe 'changing the page', ->
       beforeEach ->
         @CharacterService.data =
@@ -65,10 +62,12 @@ describe ' the characters controller', ->
           ]
 
         @scope.changePage(2)
+        @location.url('/characters?page=2')
+        @rootScope.$broadcast('$locationChangeSuccess')
         @digest()
 
       it 'should call query', ->
-        expect(@CharacterService.query).toHaveBeenCalledWith({page: 2},
+        expect(@CharacterService.query).toHaveBeenCalledWith({page: '2'},
           jasmine.any(Function))
 
       it 'should set the characters', ->
@@ -78,7 +77,7 @@ describe ' the characters controller', ->
         expect(@scope.totalCharacters).toEqualData(@CharacterService.data.total)
 
       it 'should set the current page', ->
-        expect(@scope.currentPage).toEqualData(2)
+        expect(@scope.currentPage).toEqual('2')
 
       it 'should set the page query param', ->
         expect(@location.search).toHaveBeenCalledWith('page', 2)
