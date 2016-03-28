@@ -60,12 +60,19 @@ beforeEach ->
       }
 
   @injectCommon = ->
-    inject ($rootScope, $compile, $httpBackend, $state, $controller)->
-      @scope = $rootScope.$new()
-      @compile = $compile
-      @http = $httpBackend
-      @state = $state
-      @controller = $controller
+    inject ($rootScope, $compile, $httpBackend, $state, $controller,
+      $location)->
+        @scope = $rootScope.$new()
+        @compile = $compile
+        @http = $httpBackend
+        @state = $state
+        @controller = $controller
+        @location = $location
+
+        spyOn(@location, 'search').and.callFake( (search, paramValue)=>
+          return { page: @page } if @page?
+          return
+        )
 
   @injectUserService = ->
     inject (UserService)->
