@@ -19,5 +19,8 @@ feature 'the character index', js: true do
 
     page.driver.go_back
     expect(page).to have_character_links(characters[0, 10])
+
+    page.driver.go_forward
+    expect(page).to have_character_links(characters[10, 10])
   end
 end
