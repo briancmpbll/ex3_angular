@@ -4,8 +4,9 @@
 </dir-pagination-controls>
 
 <ul class="index-list">
-  <li dir-paginate="character in characters | itemsPerPage: charactersPerPage"
-  total-items="totalCharacters" current-page="currentPage">
+  <li dir-paginate=
+  "character in characters | itemsPerPage: filters.perPage"
+  total-items="totalCharacters" current-page="filters.page">
     <img alt="Caste Icon" ng-src={{character.icon}}>
     <a ui-sref="characters.detail({id: character.id})">
       {{character.name}}

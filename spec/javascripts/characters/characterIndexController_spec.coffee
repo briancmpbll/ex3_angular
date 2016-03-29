@@ -17,32 +17,33 @@ describe ' the characters controller', ->
     @createController = ->
       @characterIndexController = @controller('CharacterIndexController',
         '$scope': @scope
+        '$state': @state
+        '$stateParams': @stateParams
         'CharacterService': @CharacterService
-        '$location': @location
       )
 
       @digest()
 
   describe 'with a page set in the query', ->
     beforeEach ->
-      @location.search('page', 2)
+      @stateParams.page = 2
       @createController()
 
     it 'should set the correct page', ->
-      expect(@scope.currentPage).toEqual(2)
+      expect(@scope.filters.page).toEqual(2)
 
   describe 'without query params', ->
     beforeEach ->
       @createController()
 
     it 'should default to page 1', ->
-      expect(@scope.currentPage).toEqual(1)
+      expect(@scope.filters.page).toEqual(1)
 
     it 'should default to 10 characters per page', ->
-      expect(@scope.charactersPerPage).toEqual(10)
+      expect(@scope.filters.perPage).toEqual(10)
 
     it 'should call query on construction', ->
-      expect(@CharacterService.query).toHaveBeenCalledWith({page: 1},
+      expect(@CharacterService.query).toHaveBeenCalledWith(@scope.filters,
         jasmine.any(Function))
 
     it 'should set scope characters variable', ->
@@ -62,22 +63,23 @@ describe ' the characters controller', ->
           ]
 
         @scope.changePage(2)
-        @location.url('/characters?page=2')
-        @rootScope.$broadcast('$locationChangeSuccess')
         @digest()
 
-      it 'should call query', ->
-        expect(@CharacterService.query).toHaveBeenCalledWith({page: '2'},
-          jasmine.any(Function))
+      it 'should call $state.go', ->
+        expect(@state.go).toHaveBeenCalledWith('characters', {
+          page: 2
+          perPage: 10
+        })
 
-      it 'should set the characters', ->
-        expect(@scope.characters).toEqualData(@CharacterService.data.characters)
+      # it 'should call query', ->
+      #   expect(@CharacterService.query).toHaveBeenCalledWith(@scope.filters,
+      #     jasmine.any(Function))
 
-      it 'should set the total characters', ->
-        expect(@scope.totalCharacters).toEqualData(@CharacterService.data.total)
+      # it 'should set the characters', ->
+      #   expect(@scope.characters).toEqualData(@CharacterService.data.characters)
 
-      it 'should set the current page', ->
-        expect(@scope.currentPage).toEqual('2')
+      # it 'should set the total characters', ->
+      #   expect(@scope.totalCharacters).toEqualData(@CharacterService.data.total)
 
-      it 'should set the page query param', ->
-        expect(@location.search).toHaveBeenCalledWith('page', 2)
+      # it 'should set the current page', ->
+      #   expect(@scope.filters.page).toEqual(2)

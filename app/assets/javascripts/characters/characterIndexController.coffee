@@ -3,30 +3,27 @@
 app = angular.module('ex3-gen')
 
 app.controller('CharacterIndexController', [
-  '$scope',
+  '$scope'
+  '$state'
+  '$stateParams'
   'CharacterService'
-  '$location'
-  ($scope, CharacterService, $location)->
-    getCharacters = (page)->
-      CharacterService.query({page: page}, (results)->
+  ($scope, $state, $stateParams, CharacterService)->
+    getCharacters = ->
+      CharacterService.query($scope.filters, (results)->
         $scope.characters = results.characters
         $scope.totalCharacters = results.total
-        $location.search('page', page)
       )
 
-    getQueryParams = ->
-      search = $location.search()
-      $scope.currentPage = if search? and search.page? then search.page else 1
-      getCharacters($scope.currentPage)
+    $scope.changePage = (page)->
+      $scope.filters.page = 2
+      $state.go('characters', $scope.filters)
 
     $scope.characters = []
     $scope.totalCharacters = 0
-    $scope.charactersPerPage = 10
 
-    $scope.changePage = (page)->
-      $location.search('page', page)
+    $scope.filters =
+      page: $stateParams.page ? 1
+      perPage: $stateParams.perPage ? 10
 
-    $scope.$on('$locationChangeSuccess', getQueryParams)
-
-    getQueryParams()
+    getCharacters()
 ])

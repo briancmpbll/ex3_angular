@@ -60,17 +60,17 @@ beforeEach ->
       }
 
   @injectCommon = ->
-    inject ($rootScope, $compile, $httpBackend, $state, $controller,
-      $location)->
+    inject ($rootScope, $compile, $httpBackend, $state, $stateParams,
+      $controller)->
         @rootScope = $rootScope
         @scope = $rootScope.$new()
         @compile = $compile
         @http = $httpBackend
         @state = $state
+        @stateParams = $stateParams
         @controller = $controller
-        @location = $location
 
-        spyOn(@location, 'search').and.callThrough()
+        spyOn(@state, 'go').and.callThrough()
 
   @injectUserService = ->
     inject (UserService)->

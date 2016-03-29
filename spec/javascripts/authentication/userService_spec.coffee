@@ -46,7 +46,6 @@ describe 'the user service', ->
         @UserService = UserService
 
         spyOn(@Flash, 'create')
-        spyOn(@state, 'go')
 
   describe 'with an autheticated user', ->
     beforeEach ->

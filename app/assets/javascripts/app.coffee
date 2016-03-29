@@ -40,9 +40,10 @@ app.config [
         onEnter: redirectIfSignedIn
       )
       .state('characters'
-        url: '/characters'
+        url: '/characters?page&perPage'
         templateUrl: 'characters/_index.html'
         controller: 'CharacterIndexController'
+        # reloadOnSearch: false
       )
       .state('characters.detail'
         url: '/:id'
