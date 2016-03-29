@@ -14,9 +14,14 @@ app.controller('CharacterIndexController', [
         $scope.totalCharacters = results.total
       )
 
+    @uiOnParamsChanged = (newParams)->
+      for param, value of newParams
+        $scope.filters[param] = value if $scope.filters[param]?
+      getCharacters()
+
     $scope.changePage = (page)->
-      $scope.filters.page = 2
-      $state.go('characters', $scope.filters)
+      $scope.filters.page = page
+      $state.go('.', $scope.filters)
 
     $scope.characters = []
     $scope.totalCharacters = 0
@@ -26,4 +31,6 @@ app.controller('CharacterIndexController', [
       perPage: $stateParams.perPage ? 10
 
     getCharacters()
+
+    return
 ])

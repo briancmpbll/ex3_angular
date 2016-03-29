@@ -8,7 +8,8 @@
   "character in characters | itemsPerPage: filters.perPage"
   total-items="totalCharacters" current-page="filters.page">
     <img alt="Caste Icon" ng-src={{character.icon}}>
-    <a ui-sref="characters.detail({id: character.id})">
+    <a ui-sref="characters.detail({id: character.id})"
+    ui-sref-opts="{inherit: false}">
       {{character.name}}
     </a>
   </li>

@@ -70,7 +70,7 @@ beforeEach ->
         @stateParams = $stateParams
         @controller = $controller
 
-        spyOn(@state, 'go').and.callThrough()
+        spyOn(@state, 'go')
 
   @injectUserService = ->
     inject (UserService)->

@@ -17,9 +17,7 @@ app.config [
   ($stateProvider, $urlRouterProvider)->
     redirectIfSignedIn = ['$state', 'Auth',
       ($state, Auth)->
-        Auth.currentUser().then( ->
-          $state.go('index')
-        )
+        $state.go('index') if Auth.isAuthenticated()
     ]
 
     $stateProvider
@@ -43,7 +41,17 @@ app.config [
         url: '/characters?page&perPage'
         templateUrl: 'characters/_index.html'
         controller: 'CharacterIndexController'
-        # reloadOnSearch: false
+        params:
+          page:
+            type: 'int'
+            value: 1
+            squash: true
+            dynamic: true
+          perPage:
+            type: 'int'
+            value: 10
+            squash: true
+            dynamic: true
       )
       .state('characters.detail'
         url: '/:id'
