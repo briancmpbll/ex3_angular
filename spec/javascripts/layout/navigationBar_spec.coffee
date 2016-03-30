@@ -30,7 +30,8 @@ describe 'the navigation bar', ->
     ])
 
   it 'should link to the characters page', ->
-    expect(@directiveElem.find('#nav-characters a')).toHaveSref('characters')
+    expect(@directiveElem.find('#nav-characters a')).toHaveSref(
+      'characters({page: 1})')
 
   it 'should call loggedIn on compilation', ->
     expect(@UserService.loggedIn).toHaveBeenCalled()

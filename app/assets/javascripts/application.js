@@ -5,9 +5,9 @@
 //= require angular-rails-templates
 //= require AngularDevise
 //= require angular-ui-router
+//= require angular-bootstrap
 //= require angular-resource
 //= require angular-flash-alert
 //= require angular-animate
 //= require change-case
-//= require angularUtils-pagination
 //= require_tree .

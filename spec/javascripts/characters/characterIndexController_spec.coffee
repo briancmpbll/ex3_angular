@@ -52,18 +52,16 @@ describe ' the characters controller', ->
     it 'should set scope total variable', ->
       expect(@scope.totalCharacters).toEqualData(@CharacterService.data.total)
 
-    describe 'calling changePage', ->
+    describe 'calling pageChanged', ->
       beforeEach ->
-        @scope.changePage(2)
+        @scope.filters.page = 2
+        @scope.pageChanged()
 
       it 'should call $state.go', ->
         expect(@state.go).toHaveBeenCalledWith('.', {
           page: 2
           perPage: 10
         })
-
-      it 'should set the current page', ->
-        expect(@scope.filters.page).toEqual(2)
 
     describe 'calling uiOnParamsChanged', ->
       beforeEach ->

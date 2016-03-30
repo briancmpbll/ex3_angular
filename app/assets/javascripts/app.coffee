@@ -2,13 +2,13 @@
 
 app = angular.module 'ex3-gen', [
   'ui.router'
+  'ui.bootstrap'
   'templates'
   'Devise'
   'ngFlash'
   'ngAnimate'
   'ngResource'
   'change-case'
-  'angularUtils.directives.dirPagination'
 ]
 
 app.config [

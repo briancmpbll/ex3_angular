@@ -1,12 +1,11 @@
 <h1>Characters</h1>
 
-<dir-pagination-controls on-page-change="changePage(newPageNumber)">
-</dir-pagination-controls>
+<uib-pagination total-items="totalCharacters" ng-model="filters.page"
+ng-change="pageChanged()" max-size="5" boundary-link-numbers="true">
+</uib-pagination>
 
 <ul class="index-list">
-  <li dir-paginate=
-  "character in characters | itemsPerPage: filters.perPage"
-  total-items="totalCharacters" current-page="filters.page">
+  <li ng-repeat="character in characters">
     <img alt="Caste Icon" ng-src={{character.icon}}>
     <a ui-sref="characters.detail({id: character.id})"
     ui-sref-opts="{inherit: false}">
@@ -14,5 +13,3 @@
     </a>
   </li>
 </ul>
-
-<dir-pagination-controls></dir-pagination-controls>

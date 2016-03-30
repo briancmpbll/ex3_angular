@@ -19,8 +19,7 @@ app.controller('CharacterIndexController', [
         $scope.filters[param] = value if $scope.filters[param]?
       getCharacters()
 
-    $scope.changePage = (page)->
-      $scope.filters.page = page
+    $scope.pageChanged = ->
       $state.go('.', $scope.filters)
 
     $scope.characters = []
