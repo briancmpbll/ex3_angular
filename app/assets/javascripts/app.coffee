@@ -38,7 +38,12 @@ app.config [
         onEnter: redirectIfSignedIn
       )
       .state('characters'
-        url: '/characters?page&perPage'
+        abstract: true
+        url: '/characters'
+        template: '<ui-view/>'
+      )
+      .state('characters.index'
+        url: '?page&perPage'
         templateUrl: 'characters/_index.html'
         controller: 'CharacterIndexController'
         params:
@@ -55,7 +60,7 @@ app.config [
       )
       .state('characters.detail'
         url: '/:id'
-        templateUrl: 'characters/_show.html'
+        templateUrl: 'characters/_detail.html'
         controller: 'CharacterDetailController'
       )
 
