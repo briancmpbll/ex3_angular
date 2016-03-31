@@ -1,6 +1,6 @@
 'use strict'
 
-describe ' the characters controller', ->
+describe ' the character index controller', ->
   beforeEach ->
     @mockCharacterService()
     @injectCommon()

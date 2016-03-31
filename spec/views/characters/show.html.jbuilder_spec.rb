@@ -12,12 +12,28 @@ RSpec.describe 'characters/show.json.jbuilder', type: :view do
   it { expect(results['willpower']).to eq(object.willpower) }
   it { expect(results['essence']).to eq(object.essence) }
 
-  it "should include the character's abilities" do
-    expect(results['abilities'].length).to eq(object.character_abilities.length)
+  subject(:abilities) { results['abilities'] }
+  subject(:attributes) { results['attributes'] }
+
+  it 'should include the right number of abilities' do
+    expect(abilities.length).to eq(object.character_abilities.length)
   end
 
-  it "should include the character's attributes" do
-    expect(results['attributes'].length).to eq(object
-      .character_attributes.length)
+  it 'should include the right ability values' do
+    object.character_abilities.each do |character_ability|
+      result_value = abilities[character_ability.ability.id.to_s]
+      expect(result_value).to eq(character_ability.value)
+    end
+  end
+
+  it 'should include the right number of attributes' do
+    expect(attributes.length).to eq(object.character_attributes.length)
+  end
+
+  it 'should include the right attribute values' do
+    object.character_attributes.each do |character_attribute|
+      result_value = attributes[character_attribute.attribute_data.id.to_s]
+      expect(result_value).to eq(character_attribute.value)
+    end
   end
 end

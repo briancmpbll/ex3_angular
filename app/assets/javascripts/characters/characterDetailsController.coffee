@@ -24,5 +24,8 @@ app.controller('CharacterDetailController', [
     ]
 
     id = $stateParams.id
-    $scope.character = CharacterService.get({id: id})
+    $scope.character = {}
+    CharacterService.get({id: id}, (data)->
+      $scope.character = data
+    )
 ])

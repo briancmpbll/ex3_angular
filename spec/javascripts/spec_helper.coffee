@@ -115,6 +115,12 @@ beforeEach ->
             deferred.promise.then(success, error)
             deferred.resolve(service.data)
         )
+        service.get = jasmine.createSpy('get').and.callFake(
+          (params, success, error)->
+            deferred = $q.defer()
+            deferred.promise.then(success, error)
+            deferred.resolve(service.data)
+        )
         service
       )
       return
