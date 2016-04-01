@@ -9,9 +9,7 @@ Rails.application.routes.draw do
   shallow do
     resources :abilities, only: [:index, :show]
 
-    resources :attribute_categories, only: [:index, :show] do
-      resources :attributes, only: [:index, :show]
-    end
+    resources :attribute_categories, only: [:index]
     resources :attributes, only: [:index]
 
     resources :character_types, only: [:index, :show],

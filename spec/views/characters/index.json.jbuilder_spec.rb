@@ -1,8 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'characters/index.json.jbuilder', type: :view do
-  let(:model_name) { :character }
-
   before do
     assign(:characters, characters)
     assign(:total, characters.length)
