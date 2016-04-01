@@ -1,11 +1,13 @@
 <h1>{{character.name}}</h1>
 
-<div class="row">
+<div class="row row-no-padding">
   <attribute-panel categories="attributeCategories" character="character">
   </attribute-panel>
 </div>
 
-<div class="row">
-  <ability-panel class="'col-xs-4'" abilities="abilities" character="character">
-  </ability-panel>
+<div class="row row-no-padding">
+  <div class="col-xs-4">
+    <ability-panel abilities="abilities" character="character">
+    </ability-panel>
+  </div>
 </div>

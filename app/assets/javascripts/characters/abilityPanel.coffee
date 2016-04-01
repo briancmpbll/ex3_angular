@@ -6,4 +6,3 @@ app.directive 'abilityPanel', ->
   scope:
     abilities: '='
     character: '='
-    class: '='

@@ -1,12 +1,14 @@
-<div class="panel panel-default" ng-class="class">
+<div class="panel panel-default">
   <div class="panel-header">
     <h2>Abilities</h2>
   </div>
   <div class="panel-body">
     <div class="row" ng-repeat="ability in abilities">
       <div class="col-sm-6">{{ability.name}}</div>
-      <trait-control max="5" trait="character.abilities[ability.id]"
-      read-only="true"></trait-control>
+      <div class="col-sm-6">
+        <trait-control max="5" trait="character.abilities[ability.id]"
+        read-only="true"></trait-control>
+      </div>
     </div>
   </div>
 </div>
