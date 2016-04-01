@@ -6,24 +6,28 @@
   </div>
   <div class="panel-body">
     <div class="col-xs-4" ng-repeat="category in attributeCategories">
-      <div class="row">
-        <h3>{{category.name}}</h3>
-      </div>
       <div class="row" ng-repeat="attribute in category.attributes">
         <div class="col-sm-6">{{attribute.name}}</div>
         <div class="col-sm-6">
-          <uib-rating max="5"
-          state-on="'fa fa-circle'" state-off="'fa fa-circle-o'"
-          ng-model="character.attributes[attribute.id]" read-only="true">
-          </uib-rating>
+          <trait-control max="5" trait="character.attributes[attribute.id]"
+          read-only="true"></trait-control>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<div class="row panel panel-default">
-  <div class="panel-header">
-    <h2>Abilities</h2>
+<div class="row">
+  <div class="col-xs-4 panel panel-default">
+    <div class="panel-header">
+      <h2>Abilities</h2>
+    </div>
+    <div class="panel-body">
+      <div class="row" ng-repeat="ability in abilities">
+        <div class="col-sm-6">{{ability.name}}</div>
+        <trait-control max="5" trait="character.abilities[ability.id]"
+        read-only="true"></trait-control>
+      </div>
+    </div>
   </div>
 </div>

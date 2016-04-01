@@ -23,6 +23,14 @@ app.controller('CharacterDetailController', [
       ]}
     ]
 
+    $scope.abilities = [
+      {id: 1, name: 'Archery'}
+      {id: 2, name: 'Athletics'}
+      {id: 3, name: 'Awareness'}
+      {id: 4, name: 'Brawl'}
+      {id: 5, name: 'Bureaucracy'}
+    ]
+
     id = $stateParams.id
     $scope.character = {}
     CharacterService.get({id: id}, (data)->
