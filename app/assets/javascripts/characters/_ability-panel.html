@@ -3,12 +3,11 @@
     <h2>Abilities</h2>
   </div>
   <div class="panel-body">
-    <div class="row" ng-repeat="ability in abilities">
-      <div class="col-sm-6">{{ability.name}}</div>
-      <div class="col-sm-6">
-        <trait-control max="5" trait="character.abilities[ability.id]"
-        read-only="true"></trait-control>
-      </div>
+    <div class="row row-with-margin" ng-repeat="ability in abilities">
+      {{ability.name}}
+      <trait-control class="float-right" max="5"
+      trait="character.abilities[ability.id]" read-only="true">
+      </trait-control>
     </div>
   </div>
 </div>

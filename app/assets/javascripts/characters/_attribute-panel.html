@@ -5,12 +5,12 @@
   <div class="panel-body">
     <div class="row">
       <div class="col-xs-4" ng-repeat="category in categories">
-        <div class="row" ng-repeat="attribute in category.attributes">
-          <div class="col-sm-6">{{attribute.name}}</div>
-          <div class="col-sm-6">
-            <trait-control max="5" trait="character.attributes[attribute.id]"
-            read-only="true"></trait-control>
-          </div>
+        <div class="row row-with-margin"
+        ng-repeat="attribute in category.attributes">
+          {{attribute.name}}
+          <trait-control class="float-right" max="5"
+          trait="character.attributes[attribute.id]" read-only="true">
+          </trait-control>
         </div>
       </div>
     </row>

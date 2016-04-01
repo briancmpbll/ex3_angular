@@ -12,7 +12,7 @@ app.controller('CharacterDetailController', [
         {id: 3, name: 'Stamina'}
       ]}
       {id: 2, name: 'Social', attributes: [
-        {id: 4, name: 'Charima'}
+        {id: 4, name: 'Charisma'}
         {id: 5, name: 'Manipulation'}
         {id: 6, name: 'Appearance'}
       ]}

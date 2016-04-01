@@ -64,6 +64,15 @@ a {
   }
 }
 
+.row-with-margin {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.float-right {
+  float: right;
+}
+
 /* typography */
 
 h1, h2, h3, h4, h5, h6 {
@@ -171,10 +180,6 @@ input {
     width: auto;
     margin-left: 0;
   }
-}
-
-trait-control {
-  float: right;
 }
 
 /* sidebar */
