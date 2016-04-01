@@ -23,17 +23,17 @@ app.config [
     $stateProvider
       .state('index'
         url: '/index'
-        templateUrl: 'index/_index.html'
+        templateUrl: 'index/index.html'
       )
       .state('login'
         url: '/login'
-        templateUrl: 'authentication/_login.html'
+        templateUrl: 'authentication/login.html'
         controller: 'LoginController'
         onEnter: redirectIfSignedIn
       )
       .state('signup'
         url: '/signup'
-        templateUrl: 'authentication/_signup.html'
+        templateUrl: 'authentication/signup.html'
         controller: 'SignupController'
         onEnter: redirectIfSignedIn
       )
@@ -44,7 +44,7 @@ app.config [
       )
       .state('characters.index'
         url: '?page&perPage'
-        templateUrl: 'characters/_index.html'
+        templateUrl: 'characters/index.html'
         controller: 'CharacterIndexController'
         params:
           page:
@@ -60,7 +60,7 @@ app.config [
       )
       .state('characters.detail'
         url: '/:id'
-        templateUrl: 'characters/_detail.html'
+        templateUrl: 'characters/detail.html'
         controller: 'CharacterDetailController'
       )
 
