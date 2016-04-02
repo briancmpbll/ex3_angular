@@ -80,6 +80,11 @@ beforeEach ->
     inject (CharacterService)->
       @CharacterService = CharacterService
 
+  @injectStaticData = ->
+    inject (Abilities, AttributeCategories)->
+      @Abilities = Abilities
+      @AttributeCategories = AttributeCategories
+
   @getCompiledElement = (elementName)=>
     element = angular.element("<#{elementName}></#{elementName}>")
     compiledElement = @compile(element)(@scope)
@@ -122,5 +127,15 @@ beforeEach ->
             deferred.resolve(service.data)
         )
         service
+      )
+      return
+
+  @mockStaticData = ->
+    module ($provide)=>
+      $provide.factory('Abilities', =>
+        @abilityData
+      )
+      $provide.factory('AttributeCategories', =>
+        @categoryData
       )
       return
