@@ -3,10 +3,10 @@
     <h2>Abilities</h2>
   </div>
   <div class="panel-body">
-    <div class="row row-with-margin" ng-repeat="ability in abilities">
-      {{ability.name}}
+    <div class="row row-with-margin" ng-repeat="(id, name) in abilities">
+      {{name}}
       <trait-control class="float-right" max="5"
-      trait="character.abilities[ability.id]" read-only="true">
+      trait="character.abilities[id]" read-only="true">
       </trait-control>
     </div>
   </div>
