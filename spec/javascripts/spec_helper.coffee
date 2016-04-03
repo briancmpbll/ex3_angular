@@ -72,19 +72,6 @@ beforeEach ->
 
         spyOn(@state, 'go')
 
-  @injectUserService = ->
-    inject (UserService)->
-      @UserService = UserService
-
-  @injectCharacterService = ->
-    inject (CharacterService)->
-      @CharacterService = CharacterService
-
-  @injectStaticData = ->
-    inject (Abilities, AttributeCategories)->
-      @Abilities = Abilities
-      @AttributeCategories = AttributeCategories
-
   @getCompiledElement = (elementName)=>
     element = angular.element("<#{elementName}></#{elementName}>")
     compiledElement = @compile(element)(@scope)
@@ -109,6 +96,10 @@ beforeEach ->
       )
       return
 
+  @injectUserService = ->
+    inject (UserService)->
+      @UserService = UserService
+
   @mockCharacterService = ->
     module ($provide)->
       $provide.factory('CharacterService', ($q)->
@@ -130,6 +121,10 @@ beforeEach ->
       )
       return
 
+  @injectCharacterService = ->
+    inject (CharacterService)->
+      @CharacterService = CharacterService
+
   @mockStaticData = ->
     module ($provide)=>
       $provide.factory('Abilities', =>
@@ -138,4 +133,13 @@ beforeEach ->
       $provide.factory('AttributeCategories', =>
         @categoryData
       )
+      $provide.factory('CharacterTypes', =>
+        @typeData
+      )
       return
+
+  @injectStaticData = ->
+    inject (Abilities, AttributeCategories, CharacterTypes)->
+      @Abilities = Abilities
+      @AttributeCategories = AttributeCategories
+      @CharacterTypes = CharacterTypes

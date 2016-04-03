@@ -17,6 +17,13 @@ describe 'the character detail controller', ->
           '1': 'Attribute1'
           '2': 'Attribute2'
 
+    @typeData =
+      '1':
+        name: 'CharacterType1'
+        castes:
+          '1': 'Caste1'
+          '2': 'Caste2'
+
     @injectCommon()
     @injectCharacterService()
     @injectStaticData()
@@ -42,6 +49,9 @@ describe 'the character detail controller', ->
 
   it 'should set the abilities', ->
     expect(@scope.abilities).toEqualData(@abilityData)
+
+  it 'should set the character types', ->
+    expect(@scope.characterTypes).toEqualData(@typeData)
 
   it 'should get a character on construction', ->
     expect(@CharacterService.get).toHaveBeenCalledWith(

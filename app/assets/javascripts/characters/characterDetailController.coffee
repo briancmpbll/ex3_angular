@@ -6,9 +6,12 @@ app.controller('CharacterDetailController', [
   'CharacterService'
   'AttributeCategories'
   'Abilities'
-  ($scope, $stateParams, CharacterService, AttributeCategories, Abilities)->
+  'CharacterTypes'
+  ($scope, $stateParams, CharacterService, AttributeCategories, Abilities,
+  CharacterTypes)->
     $scope.attributeCategories = AttributeCategories
     $scope.abilities = Abilities
+    $scope.characterTypes = CharacterTypes
 
     id = $stateParams.id
     $scope.character = {}
