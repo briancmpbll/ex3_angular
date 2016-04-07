@@ -72,8 +72,8 @@ beforeEach ->
 
         spyOn(@state, 'go')
 
-  @getCompiledElement = (elementName)=>
-    element = angular.element("<#{elementName}></#{elementName}>")
+  @getCompiledElement = (elementName, args)=>
+    element = angular.element("<#{elementName} #{args}></#{elementName}>")
     compiledElement = @compile(element)(@scope)
     @digest()
     compiledElement
