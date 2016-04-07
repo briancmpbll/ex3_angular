@@ -13,13 +13,9 @@ describe 'the traitControl directive', ->
 
     @innerScope = @directiveElem.isolateScope()
 
-  it 'should set the inner scope max', ->
+  it 'should set the inner scope attributes', ->
     expect(@innerScope.max).toEqualData(10)
-
-  it 'should set the inner scope trait', ->
     expect(@innerScope.trait).toEqualData(5)
-
-  it 'should set the inner scope readOnly', ->
     expect(@innerScope.readOnly).toEqualData(true)
 
   it 'should create one child', ->
@@ -58,13 +54,9 @@ describe 'the traitControl directive', ->
 
       @digest()
 
-    it 'should change the inner scope max', ->
+    it 'should change the inner scope attributes', ->
       expect(@innerScope.max).toEqualData(15)
-
-    it 'should change the inner scope trait', ->
       expect(@innerScope.trait).toEqualData(8)
-
-    it 'should change the inner scope readOnly', ->
       expect(@innerScope.readOnly).toEqualData(false)
 
   describe 'when the inner scope changes', ->
@@ -75,11 +67,7 @@ describe 'the traitControl directive', ->
 
       @digest()
 
-    it 'should change the outer scope max', ->
+    it 'should change the outer scope', ->
       expect(@scope.max).toEqualData(13)
-
-    it 'should change the outer scope trait', ->
       expect(@scope.trait).toEqualData(2)
-
-    it 'should change the outer scope readOnly', ->
       expect(@scope.readOnly).toEqualData(false)
