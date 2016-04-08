@@ -4,7 +4,7 @@
   </div>
   <div class="panel-body">
     <div class="row">
-      <div class="col-xs-4" ng-repeat="category in categories">
+      <div class="col-xs-4" ng-repeat="category in categories" name="{{category.name}}">
         <div class="row row-with-margin"
         ng-repeat="(id, name) in category.attributes">
           {{name}}

@@ -51,4 +51,4 @@ describe 'the abilityPanel directive', ->
       @innerScope.character['abilities']['1'] = 3
 
     it 'should change the outer scope', ->
-      expect(@scope.character['abilities']['1'] = 3)
+      expect(@scope.character['abilities']['1']).toEqual(3)
