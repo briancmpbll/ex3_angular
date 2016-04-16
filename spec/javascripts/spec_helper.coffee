@@ -23,6 +23,13 @@ beforeEach ->
           result.pass = actual.text().trim() == expected
           result
       }
+    toContainText: (util, customEqualityTesters)->
+      {
+        compare: (actual, expected)->
+          result = {}
+          result.pass = actual.text().indexOf(expected) != -1
+          result
+      }
     toHaveClass: (util, customEqualityTesters)->
       {
         compare: (actual, expected)->

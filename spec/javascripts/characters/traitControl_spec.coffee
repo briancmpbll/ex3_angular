@@ -4,19 +4,24 @@ describe 'the traitControl directive', ->
   beforeEach ->
     @injectCommon()
 
+    @scope.traitName = 'Trait'
     @scope.max = 10
     @scope.trait = 5
     @scope.readOnly = true
 
     @directiveElem = @getCompiledElement('trait-control',
-      'max="max" read-only="readOnly" trait="trait"')
+      'trait-name="traitName" max="max" read-only="readOnly" trait="trait"')
 
     @innerScope = @directiveElem.isolateScope()
 
   it 'should set the inner scope attributes', ->
+    expect(@innerScope.traitName).toEqualData('Trait')
     expect(@innerScope.max).toEqualData(10)
     expect(@innerScope.trait).toEqualData(5)
     expect(@innerScope.readOnly).toEqualData(true)
+
+  it 'should display the trait name', ->
+    expect(@directiveElem).toContainText('Trait')
 
   it 'should create one child', ->
     expect(@directiveElem.children().length).toEqualData(1)

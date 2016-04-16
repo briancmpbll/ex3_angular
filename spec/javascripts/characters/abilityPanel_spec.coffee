@@ -41,8 +41,8 @@ describe 'the abilityPanel directive', ->
 
     it 'should display each ability', ->
       for id, ability of @scope.abilities
-        rowElem = @panelBody.find(".row:contains(#{ability})")
-        traitControl = rowElem.find('trait-control span')
+        rowElem = @panelBody.find("trait-control:contains(#{ability})")
+        traitControl = rowElem.find('span')
         expect(traitControl.attr('aria-valuenow')).toEqual(
           @scope.character['abilities'][id].toString())
 
