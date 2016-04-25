@@ -1,7 +1,30 @@
 require 'rails_helper'
 
 RSpec.describe 'character_types/index.json.jbuilder', type: :view do
-  let(:model_name) { :character_type }
+  before do
+    assign(:character_types, character_types)
+    render
+  end
 
-  it_should_behave_like 'an index view'
+  let(:character_types) do
+    FactoryGirl.create_list(:character_type_with_castes, 3)
+  end
+
+  include_context 'parse JSON'
+
+  it 'should have the right number of character types' do
+    expect(results.length).to eq(character_types.length)
+  end
+
+  it 'should include the character type names' do
+    character_types.each do |character_type|
+      expect(results[character_type.id.to_s]['name']).to eq(character_type.name)
+    end
+  end
+
+  it 'should include the character type castes' do
+    character_types.each do |character_type|
+      expect(results[character_type.id.to_s]['castes']).not_to be_nil
+    end
+  end
 end

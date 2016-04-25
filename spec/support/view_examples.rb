@@ -8,23 +8,6 @@ shared_context 'single item view' do
   end
 end
 
-shared_examples_for 'an index view' do
-  include_context 'parse JSON'
-
-  before do
-    assign(plural, collection)
-    render
-  end
-
-  let(:plural) { model_name.to_s.pluralize }
-  let(:collection) do
-    FactoryGirl.create_list((defined? factory_name) ? factory_name : model_name,
-                            3)
-  end
-
-  it { is_expected.to have_exactly(collection.length).items }
-end
-
 shared_context 'show view' do
   include_context 'parse JSON'
   include_context 'single item view'
