@@ -1,40 +1,18 @@
 'use strict'
 
+fixture.preload('attribute_categories.json', 'character.json')
+
 describe 'the attributePanel directive', ->
   beforeEach ->
     @injectCommon()
 
-    @scope.categories =
-      '1':
-        name: 'Category1'
-        attributes:
-          '1': 'Attribute1'
-          '2': 'Attribute2'
-          '3': 'Attribute3'
-      '2':
-        name: 'Category2'
-        attributes:
-          '4': 'Attribute4'
-          '5': 'Attribute5'
-          '6': 'Attribute6'
-      '3':
-        name: 'Category3'
-        attributes:
-          '7': 'Attribute7'
-          '8': 'Attribute8'
-          '9': 'Attribute9'
+    @fixtures = fixture.load(
+      'attribute_categories.json'
+      'character.json'
+      true)
 
-    @scope.character =
-      'attributes':
-        '1': 3
-        '2': 1
-        '3': 2
-        '4': 3
-        '5': 2
-        '6': 4
-        '7': 3
-        '8': 4
-        '9': 5
+    @scope.categories = @fixtures[0]
+    @scope.character = @fixtures[1]
 
     @directiveElem = @getCompiledElement('attribute-panel',
       'categories="categories" character="character"')

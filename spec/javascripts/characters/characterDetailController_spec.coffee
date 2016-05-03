@@ -1,38 +1,31 @@
 'use strict'
 
+fixture.preload(
+  'abilities.json'
+  'attribute_categories.json'
+  'character_types.json'
+  'character.json')
+
 describe 'the character detail controller', ->
   beforeEach ->
     @mockCharacterService()
     @mockStaticData()
 
-    @abilityData =
-      '1': 'Ability1'
-      '2': 'Ability2'
-      '3': 'Ability3'
+    @fixtures = fixture.load(
+      'abilities.json'
+      'attribute_categories.json'
+      'character_types.json'
+      'character.json')
 
-    @categoryData =
-      '1':
-        name: 'Category1'
-        attributes:
-          '1': 'Attribute1'
-          '2': 'Attribute2'
-
-    @typeData =
-      '1':
-        name: 'CharacterType1'
-        castes:
-          '1': 'Caste1'
-          '2': 'Caste2'
+    @abilityData = @fixtures[0]
+    @categoryData = @fixtures[1]
+    @typeData = @fixtures[2]
 
     @injectCommon()
     @injectCharacterService()
     @injectStaticData()
 
-    @CharacterService.data =
-      'name': 'Cool character'
-      'abilities':
-        '1': 5
-        '2': 3
+    @CharacterService.data = @fixtures[3]
 
     @stateParams.id = 4
 

@@ -1,0 +1,26 @@
+{
+  "1": {
+    "name": "Category1",
+    "attributes": {
+      "1": "Attribute1",
+      "2": "Attribute2",
+      "3": "Attribute3"
+    }
+  },
+  "2": {
+    "name": "Category2",
+    "attributes": {
+      "4": "Attribute4",
+      "5": "Attribute5",
+      "6": "Attribute6"
+    }
+  },
+  "3": {
+    "name": "Category3",
+    "attributes": {
+      "7": "Attribute7",
+      "8": "Attribute8",
+      "9": "Attribute9"
+    }
+  }
+}

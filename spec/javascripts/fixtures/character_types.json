@@ -1,0 +1,15 @@
+{
+  "1": {
+    "name": "CharacterType1",
+    "castes": {
+      "1": {
+        "name": "Caste1",
+        "icon": "caste124.png"
+      },
+      "2": {
+        "name": "Caste2",
+        "icon": "caste224.png"
+      }
+    }
+  }
+}

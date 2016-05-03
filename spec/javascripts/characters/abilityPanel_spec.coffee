@@ -1,18 +1,17 @@
 'use strict'
 
+fixture.preload('abilities.json', 'character.json')
+
 describe 'the abilityPanel directive', ->
   beforeEach ->
     @injectCommon()
 
-    @scope.abilities =
-      '1': 'Ability1'
-      '2': 'Ability2'
-      '3': 'Ability3'
-    @scope.character =
-      'abilities':
-        '1': 2
-        '2': 4
-        '3': 1
+    @fixtures = fixture.load('abilities.json'
+      'character.json'
+      true)
+
+    @scope.abilities = @fixtures[0]
+    @scope.character = @fixtures[1]
 
     @directiveElem = @getCompiledElement('ability-panel',
       'abilities="abilities" character="character"')
