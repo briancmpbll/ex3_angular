@@ -1,5 +1,6 @@
 {
   "name": "Cool character",
+  "concept": "An awesome concept",
   "caste": "1",
   "attributes": {
     "1": 3,
