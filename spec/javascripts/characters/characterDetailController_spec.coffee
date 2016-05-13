@@ -1,59 +1,32 @@
 'use strict'
 
-fixture.preload(
-  'abilities.json'
-  'attribute_categories.json'
-  'character_types.json'
-  'character.json'
-)
-
 describe 'the character detail controller', ->
   beforeEach ->
-    @mockCharacterService()
-    @mockStaticData()
-
     @fixtures = fixture.load(
-      'abilities.json'
-      'attribute_categories.json'
-      'character_types.json'
-      'castes.json'
       'character.json'
+      'attribute_categories.json'
+      'abilities.json'
     )
 
-    @abilityData = @fixtures[0]
-    @categoryData = @fixtures[1]
-    @typeData = @fixtures[2]
-    @casteData = @fixtures[3]
+    @character = @fixtures[0]
+    @attributeCategories = @fixtures[1]
+    @abilities = @fixtures[2]
 
     @injectCommon()
-    @injectCharacterService()
-    @injectStaticData()
-
-    @CharacterService.data = @fixtures[4]
-
-    @stateParams.id = 4
 
     @characterDetailController = @controller('CharacterDetailController',
       '$scope': @scope
-      '$stateParams': @stateParams
-      'CharacterService': @CharacterService
-      'AttributeCategories': @AttributeCategories
-      'Abilities': @Abilities
+      'character': @character
+      'attributeCategories': @attributeCategories
+      'abilities': @abilities
     )
 
   it 'should set the attribute categories', ->
-    expect(@scope.attributeCategories).toEqualData(@categoryData)
+    expect(@scope.attributeCategories).toEqualData(@attributeCategories)
 
   it 'should set the abilities', ->
-    expect(@scope.abilities).toEqualData(@abilityData)
-
-  it 'should set the character types', ->
-    expect(@scope.characterTypes).toEqualData(@typeData)
-
-  it 'should get a character on construction', ->
-    expect(@CharacterService.get).toHaveBeenCalledWith(
-      {id: 4}, jasmine.any(Function))
+    expect(@scope.abilities).toEqualData(@abilities)
 
   it 'should set the scope character', ->
     @digest()
-    expect(@scope.character).toEqualData(@CharacterService.data)
+    expect(@scope.character).toEqualData(@character)

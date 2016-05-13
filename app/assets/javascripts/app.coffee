@@ -62,6 +62,17 @@ app.config [
         url: '/:id'
         templateUrl: 'characters/detail.html'
         controller: 'CharacterDetailController'
+        resolve:
+          attributeCategories: (AttributeCategories)->
+            AttributeCategories.$promise
+
+          abilities: (Abilities)->
+            Abilities.$promise
+
+          character: (CharacterService, $stateParams)->
+            id = $stateParams.id
+
+            CharacterService.get({id: id}).$promise
       )
 
     $urlRouterProvider.otherwise('index')
