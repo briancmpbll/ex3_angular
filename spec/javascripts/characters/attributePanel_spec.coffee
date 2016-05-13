@@ -1,6 +1,9 @@
 'use strict'
 
-fixture.preload('attribute_categories.json', 'character.json')
+fixture.preload(
+  'attribute_categories.json'
+  'character.json'
+)
 
 describe 'the attributePanel directive', ->
   beforeEach ->
@@ -9,7 +12,8 @@ describe 'the attributePanel directive', ->
     @fixtures = fixture.load(
       'attribute_categories.json'
       'character.json'
-      true)
+      true
+    )
 
     @scope.categories = @fixtures[0]
     @scope.character = @fixtures[1]

@@ -8,7 +8,8 @@ describe 'the conceptPanel directive', ->
 
     @fixtures = fixture.load(
       'character.json'
-      true)
+      true
+    )
 
     @scope.character = @fixtures[0]
 

@@ -11,5 +11,18 @@
         "icon": "caste224.png"
       }
     }
+  },
+  "2": {
+    "name": "CharacterType2",
+    "castes": {
+      "3": {
+        "name": "Caste3",
+        "icon": "caste324.png"
+      },
+      "4": {
+        "name": "Caste4",
+        "icon": "caste424.png"
+      }
+    }
   }
 }

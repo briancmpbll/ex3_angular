@@ -1,12 +1,17 @@
+fixture.preload(
+  'character_types.json'
+)
+
 describe 'the character types singleton', ->
   beforeEach ->
     @injectCommon()
 
-    @expected =
-      '1':
-        name: 'CharacterType1'
-        castes:
-          '1': 'Caste1'
+    @fixtures = fixture.load(
+      'character_types.json'
+      true
+    )
+
+    @expected = @fixtures[0]
     @http.expectGET('/character_types.json').respond(@expected)
 
     inject (CharacterTypes)->

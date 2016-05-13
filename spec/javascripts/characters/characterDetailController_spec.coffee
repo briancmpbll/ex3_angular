@@ -4,7 +4,8 @@ fixture.preload(
   'abilities.json'
   'attribute_categories.json'
   'character_types.json'
-  'character.json')
+  'character.json'
+)
 
 describe 'the character detail controller', ->
   beforeEach ->
@@ -15,17 +16,20 @@ describe 'the character detail controller', ->
       'abilities.json'
       'attribute_categories.json'
       'character_types.json'
-      'character.json')
+      'castes.json'
+      'character.json'
+    )
 
     @abilityData = @fixtures[0]
     @categoryData = @fixtures[1]
     @typeData = @fixtures[2]
+    @casteData = @fixtures[3]
 
     @injectCommon()
     @injectCharacterService()
     @injectStaticData()
 
-    @CharacterService.data = @fixtures[3]
+    @CharacterService.data = @fixtures[4]
 
     @stateParams.id = 4
 

@@ -143,10 +143,14 @@ beforeEach ->
       $provide.factory('CharacterTypes', =>
         @typeData
       )
+      $provide.factory('Castes', =>
+        @casteData
+      )
       return
 
   @injectStaticData = ->
-    inject (Abilities, AttributeCategories, CharacterTypes)->
+    inject (Abilities, AttributeCategories, CharacterTypes, Castes)->
       @Abilities = Abilities
       @AttributeCategories = AttributeCategories
       @CharacterTypes = CharacterTypes
+      @Castes = Castes

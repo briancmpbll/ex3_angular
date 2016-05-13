@@ -8,7 +8,8 @@ describe 'the abilityPanel directive', ->
 
     @fixtures = fixture.load('abilities.json'
       'character.json'
-      true)
+      true
+    )
 
     @scope.abilities = @fixtures[0]
     @scope.character = @fixtures[1]
