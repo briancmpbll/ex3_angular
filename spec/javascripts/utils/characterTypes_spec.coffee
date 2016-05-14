@@ -1,6 +1,4 @@
-fixture.preload(
-  'character_types.json'
-)
+'use strict'
 
 describe 'the character types singleton', ->
   beforeEach ->

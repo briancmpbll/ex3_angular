@@ -1,13 +1,11 @@
 app = angular.module('ex3-gen')
 
 app.factory('Castes', [
-  'CharacterTypes'
-  (CharacterTypes)->
-    castes = {}
+  '$resource'
+  ($resource)->
+    resource = $resource('/castes.json', {},
+      query: {method: 'GET', isArray: false}
+    )
 
-    for typeId, type of CharacterTypes
-      for casteId, caste of type.castes
-        castes[casteId] = caste
-
-    castes
+    castes = resource.query()
 ])

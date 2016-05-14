@@ -8,9 +8,7 @@ RSpec.describe 'characters/show.json.jbuilder', type: :view do
   it_should_behave_like 'a view of an id object'
   it_should_behave_like 'a view of a named object'
 
-  it { expect(results['concept']).to eq(object.concept) }
-  it { expect(results['willpower']).to eq(object.willpower) }
-  it { expect(results['essence']).to eq(object.essence) }
+  it { is_expected.to render_template(partial: '_character') }
 
   subject(:abilities) { results['abilities'] }
   subject(:attributes) { results['attributes'] }

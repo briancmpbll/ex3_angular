@@ -1,7 +1,5 @@
 'use strict'
 
-fixture.preload('abilities.json', 'character.json')
-
 describe 'the abilityPanel directive', ->
   beforeEach ->
     @injectCommon()

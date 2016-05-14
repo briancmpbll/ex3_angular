@@ -69,6 +69,9 @@ app.config [
           abilities: (Abilities)->
             Abilities.$promise
 
+          castes: (Castes)->
+            Castes.$promise
+
           character: (CharacterService, $stateParams)->
             id = $stateParams.id
 

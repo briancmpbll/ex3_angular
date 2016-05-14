@@ -5,6 +5,14 @@
 
 'use strict'
 
+fixture.preload(
+  'abilities.json'
+  'attribute_categories.json'
+  'castes.json'
+  'character.json'
+  'character_types.json'
+)
+
 beforeEach module 'ex3-gen'
 
 beforeEach ->

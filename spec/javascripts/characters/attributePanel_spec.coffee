@@ -1,10 +1,5 @@
 'use strict'
 
-fixture.preload(
-  'attribute_categories.json'
-  'character.json'
-)
-
 describe 'the attributePanel directive', ->
   beforeEach ->
     @injectCommon()

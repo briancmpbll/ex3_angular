@@ -1,3 +1,5 @@
+'use strict'
+
 describe 'the abilities singleton', ->
   beforeEach ->
     @injectCommon()

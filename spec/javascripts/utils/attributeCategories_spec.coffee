@@ -1,3 +1,5 @@
+'use strict'
+
 describe 'the attribute categories singleton', ->
   beforeEach ->
     @injectCommon()

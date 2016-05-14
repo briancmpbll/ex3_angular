@@ -1,20 +1,20 @@
 'use strict'
 
-fixture.preload('character.json')
-
 describe 'the conceptPanel directive', ->
   beforeEach ->
     @injectCommon()
 
     @fixtures = fixture.load(
       'character.json'
+      'castes.json'
       true
     )
 
     @scope.character = @fixtures[0]
+    @scope.castes = @fixtures[1]
 
     @directiveElem = @getCompiledElement('concept-panel',
-      'character="character"')
+      'character="character" castes="castes"')
 
     @panelElem = @directiveElem.children().first()
 
@@ -26,12 +26,16 @@ describe 'the conceptPanel directive', ->
 
   it 'should set the inner scope attributes', ->
     expect(@innerScope.character).toEqualData(@scope.character)
+    expect(@innerScope.castes).toEqualData(@scope.castes)
 
   it 'should contain the character name', ->
     expect(@panelElem).toContainText(@scope.character.name)
 
   it 'should contain the character concept', ->
     expect(@panelElem).toContainText(@scope.character.concept)
+
+  it 'should contain the caste name', ->
+    expect(@panelElem).toContainText(@scope.castes[@scope.character.caste].name)
 
   describe 'changing the outer scope', ->
     beforeEach ->

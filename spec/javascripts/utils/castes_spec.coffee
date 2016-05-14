@@ -1,29 +1,22 @@
-fixture.preload(
-  'character_types.json',
-  'castes.json'
-)
+'use strict'
 
 describe 'the castes singleton', ->
   beforeEach ->
+    @injectCommon()
+
     @fixtures = fixture.load(
-      'character_types.json'
       'castes.json'
       true
     )
 
-    module ($provide)=>
-      $provide.factory('CharacterTypes', =>
-        @fixtures[0]
-      )
-      return
+    @expected = @fixtures[0]
+    @http.expectGET('/castes.json').respond(@expected)
 
-    @injectCommon()
-
-    @expected = @fixtures[1]
-
-    inject (CharacterTypes, Castes)->
-      @CharacterTypes = CharacterTypes
+    inject (Castes)->
       @Castes = Castes
 
+    @http.flush()
+
   it 'should set the castes singleton', ->
+    @digest()
     expect(@Castes).toEqualData(@expected)

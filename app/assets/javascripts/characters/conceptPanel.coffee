@@ -5,3 +5,4 @@ app.directive 'conceptPanel', ->
   templateUrl: 'characters/_concept-panel.html'
   scope:
     character: '='
+    castes: '='
