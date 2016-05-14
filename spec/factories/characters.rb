@@ -5,6 +5,8 @@ FactoryGirl.define do
     association :caste
     willpower { rand(1..10) }
     essence { rand(1..5) }
+    player 'George'
+    anima 'Sick light show'
 
     after(:create) do |character|
       create_list(:character_attribute, 9, character: character)

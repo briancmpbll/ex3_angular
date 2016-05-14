@@ -12,4 +12,6 @@ RSpec.describe 'characters/_character.json.jbuilder', type: :view do
   it { expect(results['willpower']).to eq(object.willpower) }
   it { expect(results['essence']).to eq(object.essence) }
   it { expect(results['caste']).to eq(object.caste.id) }
+  it { expect(results['player']).to eq(object.player) }
+  it { expect(results['anima']).to eq(object.anima) }
 end

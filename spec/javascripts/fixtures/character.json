@@ -2,6 +2,8 @@
   "name": "Cool character",
   "concept": "An awesome concept",
   "caste": "1",
+  "player": "Brian",
+  "anima": "Cool visual effect",
   "attributes": {
     "1": 3,
     "2": 1,

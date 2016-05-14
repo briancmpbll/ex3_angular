@@ -37,6 +37,12 @@ describe 'the conceptPanel directive', ->
   it 'should contain the caste name', ->
     expect(@panelElem).toContainText(@scope.castes[@scope.character.caste].name)
 
+  it 'should contain the character player', ->
+    expect(@panelElem).toContainText(@scope.character.player)
+
+  it 'should contain the character anima', ->
+    expect(@panelElem).toContainText(@scope.character.anima)
+
   describe 'changing the outer scope', ->
     beforeEach ->
       @scope.character.name = 'New Character'

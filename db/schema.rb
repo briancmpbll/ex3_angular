@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160323061050) do
+ActiveRecord::Schema.define(version: 20160514212953) do
 
   create_table "abilities", force: :cascade do |t|
     t.string   "name",       null: false
@@ -109,6 +109,8 @@ ActiveRecord::Schema.define(version: 20160323061050) do
     t.integer  "essence"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "player"
+    t.string   "anima"
   end
 
   add_index "characters", ["caste_id"], name: "index_characters_on_caste_id"

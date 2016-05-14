@@ -16,6 +16,8 @@ feature 'the character detail page', js: true do
       expect(page).to have_content(character.name)
       expect(page).to have_content(character.concept)
       expect(page).to have_content(character.caste.name)
+      expect(page).to have_content(character.player)
+      expect(page).to have_content(character.anima)
     end
 
     within 'attribute-panel .panel' do

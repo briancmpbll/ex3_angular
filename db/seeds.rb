@@ -188,7 +188,9 @@ if %w(development test).include?(Rails.env.downcase)
         concept: 'An awesome character',
         caste: caste,
         willpower: rand(1..10),
-        essence: rand(1..5)
+        essence: rand(1..5),
+        player: Faker::Name.name,
+        anima: 'Really sweet effect'
       )
 
       Attribute.all.each do |attribute|

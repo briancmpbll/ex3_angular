@@ -7,7 +7,7 @@ RSpec.describe Character, type: :model do
   it 'should respond to fields' do
     is_expected.to respond_to(:concept, :caste, :willpower, :essence,
                               :character_type, :character_abilities,
-                              :character_attributes)
+                              :character_attributes, :player, :anima)
   end
 
   it { is_expected.to validate_presence_of :caste }
