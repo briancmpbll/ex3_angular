@@ -6,8 +6,9 @@ app.controller('CharacterIndexController', [
   '$scope'
   '$state'
   '$stateParams'
+  'castes'
   'CharacterService'
-  ($scope, $state, $stateParams, CharacterService)->
+  ($scope, $state, $stateParams, castes, CharacterService)->
     getCharacters = ->
       CharacterService.query($scope.filters, (results)->
         $scope.characters = results.characters
@@ -21,6 +22,8 @@ app.controller('CharacterIndexController', [
 
     $scope.pageChanged = ->
       $state.go('.', $scope.filters)
+
+    $scope.castes = castes
 
     $scope.characters = []
     $scope.totalCharacters = 0

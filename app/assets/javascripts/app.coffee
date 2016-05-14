@@ -41,6 +41,9 @@ app.config [
         abstract: true
         url: '/characters'
         template: '<ui-view/>'
+        resolve:
+          castes: (Castes)->
+            Castes.$promise
       )
       .state('characters.index'
         url: '?page&perPage'
@@ -68,9 +71,6 @@ app.config [
 
           abilities: (Abilities)->
             Abilities.$promise
-
-          castes: (Castes)->
-            Castes.$promise
 
           character: (CharacterService, $stateParams)->
             id = $stateParams.id

@@ -14,11 +14,19 @@ describe ' the character index controller', ->
         {id: 3, name: 'Test 3', concept: 'Concept 3'}
       ]
 
+    @fixtures = fixture.load(
+      'castes.json'
+      true
+    )
+
+    @castes = @fixtures[0]
+
     @createController = ->
       @characterIndexController = @controller('CharacterIndexController',
         '$scope': @scope
         '$state': @state
         '$stateParams': @stateParams
+        'castes': @castes
         'CharacterService': @CharacterService
       )
 
@@ -51,6 +59,9 @@ describe ' the character index controller', ->
 
     it 'should set scope total variable', ->
       expect(@scope.totalCharacters).toEqualData(@CharacterService.data.total)
+
+    it 'should set scope castes', ->
+      expect(@scope.castes).toEqualData(@castes)
 
     describe 'calling pageChanged', ->
       beforeEach ->
