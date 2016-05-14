@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :abilities, only: [:index]
     resources :attribute_categories, only: [:index]
     resources :character_types, only: [:index]
+    resources :castes, only: [:index]
 
     resources :characters, only: [:index, :show]
   end
