@@ -28,7 +28,7 @@ RSpec::Matchers.define :have_character_links do |expected|
       index_list = actual.find('.index-list')
       link = index_list.find_link(character.name,
                                   href: "#/characters/#{character.id}")
-      icon = link.find(:xpath, '../img')
+      icon = link.find(:xpath, '../caste-icon/img')
       return false unless
         icon['src'].include?(character.caste.name.downcase) &&
         icon['alt'].include?(character.caste.name)

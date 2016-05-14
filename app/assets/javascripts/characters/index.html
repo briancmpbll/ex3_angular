@@ -6,7 +6,7 @@ ng-change="pageChanged()" max-size="5" boundary-link-numbers="true">
 
 <ul class="index-list">
   <li ng-repeat="character in characters">
-    <img alt="{{castes[character.caste].name}} Icon" ng-src={{castes[character.caste].icon}}>
+    <caste-icon caste="castes[character.caste]"></caste-icon>
     <a ui-sref="characters.detail({id: character.id})"
     ui-sref-opts="{inherit: false}">
       {{character.name}}
