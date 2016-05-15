@@ -25,4 +25,19 @@ RSpec.describe 'castes/_list.json.jbuilder', type: :view do
       expect(results[caste.id.to_s]['icon']).to match icon_regex
     end
   end
+
+  it 'should include the right number of caste abilities' do
+    castes.each do |caste|
+      expect(results[caste.id.to_s]['abilities'].length).to eq(caste.abilities
+                                                               .length)
+    end
+  end
+
+  it 'should include the right caste abilities' do
+    castes.each do |caste|
+      caste.abilities.each do |ability|
+        expect(results[caste.id.to_s]['abilities']).to include(ability.id)
+      end
+    end
+  end
 end
