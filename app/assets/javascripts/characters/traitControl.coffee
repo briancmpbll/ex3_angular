@@ -10,3 +10,4 @@ app.directive 'traitControl', ->
     max: '='
     trait: '='
     readOnly: '='
+    selectable: '='

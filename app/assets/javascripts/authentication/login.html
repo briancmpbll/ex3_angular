@@ -6,10 +6,10 @@
         required ng-model="user.email" />
       <input type="password" class="form-control" placeholder="Password"
         required ng-model="user.password" />
-      <label for="remember_me" class="checkbox-inline">
+      <div class="checkbox checkbox-primary">
         <input type="checkbox" id="remember_me" ng-model="user.remember_me">
-        <span>Remember on this computer</span>
-      </label>
+        <label for="remember_me">Remember on this computer</label>
+      </div>
       <input type="submit" class="btn btn-primary" value="Log In"
       />
     </form>

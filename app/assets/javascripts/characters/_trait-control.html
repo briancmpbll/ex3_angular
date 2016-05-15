@@ -1,4 +1,9 @@
-{{traitName}}
+<div class="checkbox checkbox-inline" ng-show="selectable">
+  <input type="checkbox" ng-disabled="readOnly"
+  ng-attr-id="{{traitName + '-checkbox'}}">
+  <label ng-attr-for="{{traitName + '-checkbox'}}">{{traitName}}</label>
+</div>
+<span ng-hide="selectable">{{traitName}}</span>
 <uib-rating class="float-right" state-on="'fa fa-circle'"
 state-off="'fa fa-circle-o'" max="max" ng-model="trait" read-only="readOnly">
 </uib-rating>

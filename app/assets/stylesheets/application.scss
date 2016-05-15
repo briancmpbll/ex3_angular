@@ -1,6 +1,7 @@
 @import "bootstrap-sass/assets/stylesheets/bootstrap-sprockets";
 @import "bootstrap-sass/assets/stylesheets/bootstrap";
 @import "font-awesome/css/font-awesome";
+@import "awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.scss";
 
 @import '*';
 
@@ -145,7 +146,6 @@ footer {
 /* forms */
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
-  width: 100%;
   margin-bottom: 15px;
   @include box_sizing;
 }
@@ -169,16 +169,26 @@ input {
   }
 }
 
-.checkbox-inline {
-  margin-top: -10px;
-  margin-bottom: 10px;
-  span {
-    margin-left: 20px;
-    font-weight: normal;
+trait-control {
+  .checkbox input[type="checkbox"] + label:before {
+    border: 2px solid #555;
   }
-  input[type="checkbox"] {
-    width: auto;
-    margin-left: 0;
+
+  // Customize size and position of checkbox tick for trait controls
+  .checkbox input[type="checkbox"]:checked + label:after {
+    content: "\f0c8";
+    padding-top: 2px;
+    padding-left: 4.5px;
+    font-size: 10px;
+  }
+
+  .checkbox input[type="checkbox"]:disabled + label {
+    opacity: 1;
+    cursor: default;
+
+    &::before {
+      background-color: #fff;
+    }
   }
 }
 
