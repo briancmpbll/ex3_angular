@@ -2,6 +2,7 @@
 #= require support/bind-poly
 #= require application
 #= require angular-mocks/angular-mocks
+#= require angular-jasmine-matchers
 
 'use strict'
 
@@ -24,25 +25,11 @@ beforeEach ->
           result.pass = angular.equals(actual, expected)
           result
       }
-    toHaveText: (util, customEqualityTesters)->
-      {
-        compare: (actual, expected)->
-          result = {}
-          result.pass = actual.text().trim() == expected
-          result
-      }
     toContainText: (util, customEqualityTesters)->
       {
         compare: (actual, expected)->
           result = {}
           result.pass = actual.text().indexOf(expected) != -1
-          result
-      }
-    toHaveClass: (util, customEqualityTesters)->
-      {
-        compare: (actual, expected)->
-          result = {}
-          result.pass = actual.hasClass(expected)
           result
       }
     toBeVisible: (util, customEqualityTesters)->

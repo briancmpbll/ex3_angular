@@ -1,6 +1,62 @@
 'use strict'
 
 describe 'the traitControl directive', ->
+  scopeVariableTest = ()->
+    it 'should match the scope variables', ->
+      expect(@innerScope.traitName).toEqualData(@scope.traitName)
+      expect(@innerScope.max).toEqualData(@scope.max)
+      expect(@innerScope.trait).toEqualData(@scope.trait)
+      expect(@innerScope.readOnly).toEqualData(@scope.readOnly)
+      expect(@innerScope.selectable).toEqualData(@scope.selectable)
+
+  commonTests = ()->
+    it 'should create two children', ->
+      expect(@directiveElem.children().length).toEqualData(2)
+
+    scopeVariableTest()
+
+    describe 'the rating element', ->
+      beforeEach ->
+        @ratingElem = @directiveElem.find('> span.rating-control')
+
+      it 'should have float-right class', ->
+        expect(@ratingElem).toHaveClass('float-right')
+
+      it 'should set the state-on attr', ->
+        expect(@ratingElem.attr('state-on')).toEqual("'fa fa-circle'")
+
+      it 'should set the state-off attr', ->
+        expect(@ratingElem.attr('state-off')).toEqual("'fa fa-circle-o'")
+
+      it 'should bind the ng-model attr', ->
+        expect(@ratingElem.attr('ng-model')).toEqual('trait')
+
+      it 'should bind the max attr', ->
+        expect(@ratingElem.attr('max')).toEqual('max')
+
+      it 'should bind the read-only attr', ->
+        expect(@ratingElem.attr('read-only')).toEqual('readOnly')
+
+    describe 'when the outer scope changes', ->
+      beforeEach ->
+        @scope.max = 15
+        @scope.trait = 8
+        @scope.readOnly = false
+
+        @digest()
+
+      scopeVariableTest()
+
+    describe 'when the inner scope changes', ->
+      beforeEach ->
+        @innerScope.max = 13
+        @innerScope.trait = 2
+        @innerScope.readOnly = false
+
+        @digest()
+
+      scopeVariableTest()
+
   beforeEach ->
     @injectCommon()
 
@@ -9,70 +65,51 @@ describe 'the traitControl directive', ->
     @scope.trait = 5
     @scope.readOnly = true
 
-    @directiveElem = @getCompiledElement('trait-control',
-      'trait-name="traitName" max="max" read-only="readOnly" trait="trait"')
+    @createDirective = ()->
+      @directiveElem = @getCompiledElement('trait-control',
+        'trait-name="traitName" max="max" read-only="readOnly" trait="trait"
+        selectable="selectable"')
 
-    @innerScope = @directiveElem.isolateScope()
+      @innerScope = @directiveElem.isolateScope()
 
-  it 'should set the inner scope attributes', ->
-    expect(@innerScope.traitName).toEqualData('Trait')
-    expect(@innerScope.max).toEqualData(10)
-    expect(@innerScope.trait).toEqualData(5)
-    expect(@innerScope.readOnly).toEqualData(true)
-
-  it 'should display the trait name', ->
-    expect(@directiveElem).toContainText('Trait')
-
-  it 'should create one child', ->
-    expect(@directiveElem.children().length).toEqualData(1)
-
-  describe 'the child element', ->
+  describe 'an unselectable traitControl', ->
     beforeEach ->
-      @childElem = @directiveElem.children().first()
+      @scope.selectable = false
+      @createDirective()
 
-    it 'should be a span', ->
-      expect(@childElem.prop('tagName')).toEqual('SPAN')
+    commonTests()
 
-    it 'should have float-right class', ->
-      expect(@childElem).toHaveClass('float-right')
+    describe 'the label element', ->
+      beforeEach ->
+        @labelElem = @directiveElem.find('> span:first-child')
 
-    it 'should set the state-on attr', ->
-      expect(@childElem.attr('state-on')).toEqual("'fa fa-circle'")
+      it 'should show the trait name', ->
+        expect(@labelElem).toHaveText('Trait')
 
-    it 'should set the state-off attr', ->
-      expect(@childElem.attr('state-off')).toEqual("'fa fa-circle-o'")
-
-    it 'should bind the ng-model attr', ->
-      expect(@childElem.attr('ng-model')).toEqual('trait')
-
-    it 'should bind the max attr', ->
-      expect(@childElem.attr('max')).toEqual('max')
-
-    it 'should bind the read-only attr', ->
-      expect(@childElem.attr('read-only')).toEqual('readOnly')
-
-  describe 'when the outer scope changes', ->
+  describe 'a selectable traitControl', ->
     beforeEach ->
-      @scope.max = 15
-      @scope.trait = 8
-      @scope.readOnly = false
+      @scope.selectable = true
+      @createDirective()
 
-      @digest()
+    commonTests()
 
-    it 'should change the inner scope attributes', ->
-      expect(@innerScope.max).toEqualData(15)
-      expect(@innerScope.trait).toEqualData(8)
-      expect(@innerScope.readOnly).toEqualData(false)
+    describe 'the checkbox div', ->
+      beforeEach ->
+        @checkboxDiv = @directiveElem.find('> .checkbox.checkbox-inline')
 
-  describe 'when the inner scope changes', ->
-    beforeEach ->
-      @innerScope.max = 13
-      @innerScope.trait = 2
-      @innerScope.readOnly = false
+      describe 'the checkbox element', ->
+        beforeEach ->
+          @checkboxElem = @checkboxDiv.find('input[type="checkbox"]')
 
-      @digest()
+        it 'should have the right id', ->
+          expect(@checkboxElem).toHaveAttr('id', 'Trait-checkbox')
 
-    it 'should change the outer scope', ->
-      expect(@scope.max).toEqualData(13)
-      expect(@scope.trait).toEqualData(2)
-      expect(@scope.readOnly).toEqualData(false)
+      describe 'the label', ->
+        beforeEach ->
+          @labelElem = @checkboxDiv.find('label')
+
+        it 'should be for the checkbox', ->
+          expect(@labelElem).toHaveAttr('for', 'Trait-checkbox')
+
+        it 'should show the trait name', ->
+          expect(@labelElem).toHaveText('Trait')

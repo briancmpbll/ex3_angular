@@ -28,6 +28,7 @@
     "change-case": "^2.3.0",
     "angular-bootstrap": "^1.2.5",
     "font-awesome": "^4.5.0",
-    "awesome-bootstrap-checkbox": "^0.3.7"
+    "awesome-bootstrap-checkbox": "^0.3.7",
+    "angular-jasmine-matchers": "angularjs-jasmine-matchers#*"
   }
 }

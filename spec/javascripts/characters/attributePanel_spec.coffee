@@ -41,7 +41,7 @@ describe 'the attributePanel directive', ->
         columnElem = @panelBody.find(".col-xs-4[name='#{category.name}']")
         for attrId, attribute of category.attributes
           rowElem = columnElem.find(".row:contains(#{attribute})")
-          traitControl = rowElem.find('trait-control span')
+          traitControl = rowElem.find('trait-control span.rating-control')
           expect(traitControl.attr('aria-valuenow')).toEqual(
             @scope.character['attributes'][attrId].toString())
 

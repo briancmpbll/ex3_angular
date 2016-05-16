@@ -87,7 +87,8 @@ describe 'the navigation bar', ->
       expect(@userDropdown).toBeVisible()
 
     it 'should show the username on the user dropdown', ->
-      expect(@userDropdown.find('.dropdown-toggle')).toHaveText(@currentUser.username)
+      expect(@userDropdown.find('.dropdown-toggle'))
+      .toContainText(@currentUser.username)
 
     it 'should hide the login link', ->
       expect(@loginLink).toBeHidden()
