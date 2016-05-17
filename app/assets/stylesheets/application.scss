@@ -169,25 +169,43 @@ input {
   }
 }
 
-trait-control {
-  .checkbox input[type="checkbox"] + label:before {
-    border: 2px solid #555;
+trait-control .checkbox {
+  input[type="checkbox"] {
+    + label:before {
+      border: 2px solid #555;
+    }
+
+    // Customize size and position of checkbox tick for trait controls
+    &:checked + label:after {
+      content: "\f0c8";
+      padding-top: 2px;
+      padding-left: 4.5px;
+      font-size: 10px;
+    }
+
+    &:disabled + label {
+      opacity: 1;
+      cursor: default;
+
+      &::before {
+        background-color: #fff;
+      }
+    }
   }
 
-  // Customize size and position of checkbox tick for trait controls
-  .checkbox input[type="checkbox"]:checked + label:after {
-    content: "\f0c8";
-    padding-top: 2px;
-    padding-left: 4.5px;
-    font-size: 10px;
-  }
+  &.checkbox-caste {
+    input[type="checkbox"] {
+      + label {
+        text-decoration: underline;
+      }
 
-  .checkbox input[type="checkbox"]:disabled + label {
-    opacity: 1;
-    cursor: default;
+      + label:before {
+        border: 2px solid gold;
+      }
 
-    &::before {
-      background-color: #fff;
+      &:checked + label:after {
+        color: gold;
+      }
     }
   }
 }

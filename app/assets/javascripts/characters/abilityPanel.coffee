@@ -8,3 +8,11 @@ app.directive 'abilityPanel', ->
   scope:
     abilities: '='
     character: '='
+    castes: '='
+  controller: ['$scope',
+    ($scope)->
+      $scope.isCasteAbility = (abilityId)->
+        abilityId = parseInt(abilityId, 10)
+        caste = $scope.castes[$scope.character.caste]
+        abilityId in caste.abilities
+  ]

@@ -4,16 +4,19 @@ describe 'the abilityPanel directive', ->
   beforeEach ->
     @injectCommon()
 
-    @fixtures = fixture.load('abilities.json'
+    @fixtures = fixture.load(
+      'abilities.json'
       'character.json'
+      'castes.json'
       true
     )
 
     @scope.abilities = @fixtures[0]
     @scope.character = @fixtures[1]
+    @scope.castes = @fixtures[2]
 
     @directiveElem = @getCompiledElement('ability-panel',
-      'abilities="abilities" character="character"')
+      'abilities="abilities" character="character" castes="castes"')
     @panelElem = @directiveElem.children().first()
 
     @innerScope = @directiveElem.isolateScope()
@@ -29,6 +32,7 @@ describe 'the abilityPanel directive', ->
   it 'should set the inner scope attributes', ->
     expect(@innerScope.abilities).toEqualData(@scope.abilities)
     expect(@innerScope.character).toEqualData(@scope.character)
+    expect(@innerScope.castes).toEqualData(@scope.castes)
 
   describe 'the panel body', ->
     beforeEach ->
