@@ -2,16 +2,26 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <form ng-submit="login()">
-      <input type="email" class="form-control" placeholder="Email"
-        required ng-model="user.email" />
-      <input type="password" class="form-control" placeholder="Password"
-        required ng-model="user.password" />
-      <div class="checkbox checkbox-primary">
-        <input type="checkbox" id="remember_me" ng-model="user.remember_me">
-        <label for="remember_me">Remember on this computer</label>
+      <div class="form-group">
+        <input type="email" class="form-control" placeholder="Email"
+          required ng-model="user.email">
       </div>
-      <input type="submit" class="btn btn-primary" value="Log In"
-      />
+
+      <div class="form-group">
+        <input type="password" class="form-control" placeholder="Password"
+          required ng-model="user.password">
+      </div>
+
+      <div class="form-group">
+        <div class="checkbox checkbox-primary">
+          <input type="checkbox" id="remember_me" ng-model="user.remember_me">
+          <label for="remember_me">Remember on this computer</label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <input type="submit" class="btn btn-primary" value="Log In">
+      </div>
     </form>
     <p>New user? <a ui-sref="signup">Sign up now!</a></p>
   </div>
