@@ -4,7 +4,7 @@
   </div>
   <div class="panel-body">
     <div class="row row-with-margin" ng-repeat="(id, name) in abilities">
-      <trait-control trait-name="name" max="5" caste="isCasteAbility(id)"
+      <trait-control trait-name="name" max="5" ng-class="{'caste-ability' : isCasteAbility(id)}"
       trait="character.abilities[id]" read-only="true" selectable="true">
       </trait-control>
     </div>

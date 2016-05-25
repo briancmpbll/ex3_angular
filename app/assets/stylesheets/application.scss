@@ -153,14 +153,6 @@ footer {
 }
 
 // forms
-@mixin normal-disabled {
-  cursor: default;
-  opacity: 1;
-
-  &::before {
-    background-color: $body-bg;
-  }
-}
 
 // mark invalid fields that have lost focus
 .ng-invalid.ng-touched {
@@ -174,37 +166,40 @@ footer {
   }
 }
 
-trait-control .checkbox {
-  [type="checkbox"] {
-    + label:before {
-      border: 2px solid $gray;
-    }
-
-    // Customize size and position of checkbox tick for trait controls
-    &:checked + label:after {
-      content: '\f0c8';
-      font-size: 10px;
-      padding-left: 4.5px;
-      padding-top: 2px;
-    }
-
-    &:disabled + label {
-      @include normal-disabled();
-    }
+trait-control .checkbox [type="checkbox"] {
+  + label:before {
+    border: 2px solid $gray;
   }
 
-  &.checkbox-caste [type='checkbox'] {
-    + label {
-      font-weight: bold;
-    }
+  // Customize size and position of checkbox tick for trait controls
+  &:checked + label:after {
+    content: '\f0c8';
+    font-size: 10px;
+    padding-left: 4.5px;
+    padding-top: 2px;
+  }
 
-    + label:before {
-      border: 2px solid $gold;
-    }
+  &:disabled + label {
+    cursor: default;
+    opacity: 1;
 
-    &:checked + label:after {
-      color: $gold;
+    &::before {
+      background-color: $body-bg;
     }
+  }
+}
+
+.caste-ability .checkbox [type='checkbox'] {
+  + label {
+    font-weight: bold;
+  }
+
+  + label:before {
+    border: 2px solid $gold;
+  }
+
+  &:checked + label:after {
+    color: $gold;
   }
 }
 

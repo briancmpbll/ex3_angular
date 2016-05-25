@@ -39,7 +39,15 @@ feature 'the character detail page', js: true do
 
       within '.panel-body' do
         abilities.each do |ability|
-          expect(page).to have_selector('trait-control', text: ability.name)
+          selector = 'trait-control'
+          selector +=
+            if character.caste.abilities.include? ability
+              '.caste-ability'
+            else
+              ':not(.caste-ability)'
+            end
+
+          expect(page).to have_selector(selector, text: ability.name)
         end
       end
     end

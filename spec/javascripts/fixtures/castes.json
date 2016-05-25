@@ -1,18 +1,22 @@
 {
   "1": {
     "name": "Caste1",
-    "icon": "caste124.png"
+    "icon": "caste124.png",
+    "abilities": [1, 3]
   },
   "2": {
     "name": "Caste2",
-    "icon": "caste224.png"
+    "icon": "caste224.png",
+    "abilities": [1]
   },
   "3": {
     "name": "Caste3",
-    "icon": "caste324.png"
+    "icon": "caste324.png",
+    "abilities": [2, 3]
   },
   "4": {
     "name": "Caste4",
-    "icon": "caste424.png"
+    "icon": "caste424.png",
+    "abilities": [3]
   }
 }

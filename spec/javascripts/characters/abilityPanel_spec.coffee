@@ -34,6 +34,13 @@ describe 'the abilityPanel directive', ->
     expect(@innerScope.character).toEqualData(@scope.character)
     expect(@innerScope.castes).toEqualData(@scope.castes)
 
+  describe 'the isCasteAbility function', ->
+    it 'should return true when the ability is a caste ability', ->
+      expect(@innerScope.isCasteAbility('1')).toBe(true)
+
+    it 'should return false when the ability is not a caste ability', ->
+      expect(@innerScope.isCasteAbility('2')).toBe(false)
+
   describe 'the panel body', ->
     beforeEach ->
       @panelBody = @panelElem.find('.panel-body')
@@ -47,6 +54,9 @@ describe 'the abilityPanel directive', ->
         traitControl = rowElem.find('span')
         expect(traitControl.attr('aria-valuenow')).toEqual(
           @scope.character['abilities'][id].toString())
+
+        expect(rowElem).toHaveClass('caste-ability') if @innerScope.
+          isCasteAbility(id)
 
   describe 'changing the inner scope', ->
     beforeEach ->
