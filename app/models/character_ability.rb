@@ -10,4 +10,5 @@ class CharacterAbility < ActiveRecord::Base
   validates_uniqueness_of :character, scope: :ability_id
 
   validates_inclusion_of :value, in: 0..5
+  validates_inclusion_of :favored, in: [true, false]
 end

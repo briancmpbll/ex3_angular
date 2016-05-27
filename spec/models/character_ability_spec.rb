@@ -8,12 +8,13 @@ RSpec.describe CharacterAbility, type: :model do
   it_should_behave_like 'a timestamped model'
 
   it 'should respond to fields' do
-    is_expected.to respond_to(:character, :ability, :value)
+    is_expected.to respond_to(:character, :ability, :value, :favored)
   end
 
   it { is_expected.to validate_presence_of :character }
   it { is_expected.to validate_presence_of :ability }
 
+  it { is_expected.to validate_inclusion_of(:favored).in_array([true, false]) }
   it { is_expected.to validate_inclusion_of(:value).in_range(0..5) }
 
   it 'should only allow one rating for each ability on a character' do
