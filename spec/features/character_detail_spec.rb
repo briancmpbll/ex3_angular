@@ -38,7 +38,8 @@ feature 'the character detail page', js: true do
       end
 
       within '.panel-body' do
-        abilities.each do |ability|
+        character.character_abilities.each do |char_ability|
+          ability = char_ability.ability
           selector = 'trait-control'
           selector +=
             if character.caste.abilities.include? ability
@@ -47,7 +48,16 @@ feature 'the character detail page', js: true do
               ':not(.caste-ability)'
             end
 
-          expect(page).to have_selector(selector, text: ability.name)
+          within(selector, text: ability.name) do
+            expect(page).to have_css(
+              ".rating-control[aria-valuenow='#{char_ability.value}']"
+            )
+
+            expect(page).to have_field("#{ability.name}-checkbox",
+                                       visible: false,
+                                       disabled: true,
+                                       checked: char_ability.favored)
+          end
         end
       end
     end

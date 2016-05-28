@@ -19,8 +19,15 @@ RSpec.describe 'characters/show.json.jbuilder', type: :view do
 
   it 'should include the right ability values' do
     object.character_abilities.each do |character_ability|
-      result_value = abilities[character_ability.ability.id.to_s]
+      result_value = abilities[character_ability.ability.id.to_s]['value']
       expect(result_value).to eq(character_ability.value)
+    end
+  end
+
+  it 'should have the right favored abilities' do
+    object.character_abilities.each do |character_ability|
+      favored = abilities[character_ability.ability.id.to_s]['favored']
+      expect(favored).to eq(character_ability.favored)
     end
   end
 

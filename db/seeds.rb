@@ -222,7 +222,8 @@ if %w(development test).include?(Rails.env.downcase)
         CharacterAbility.create(
           character: character,
           ability: ability,
-          value: rand(0..5)
+          value: rand(0..5),
+          favored: rand(1..5) % 5 == 0
         )
       end
     end

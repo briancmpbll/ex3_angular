@@ -14,7 +14,7 @@ RSpec.describe CharacterAbility, type: :model do
   it { is_expected.to validate_presence_of :character }
   it { is_expected.to validate_presence_of :ability }
 
-  it { is_expected.to validate_inclusion_of(:favored).in_array([true, false]) }
+  # it { is_expected.to validate_inclusion_of(:favored).in_array([true, false]) }
   it { is_expected.to validate_inclusion_of(:value).in_range(0..5) }
 
   it 'should only allow one rating for each ability on a character' do

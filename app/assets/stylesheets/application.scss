@@ -193,14 +193,6 @@ trait-control .checkbox [type="checkbox"] {
   + label {
     font-weight: bold;
   }
-
-  + label:before {
-    border: 2px solid $gold;
-  }
-
-  &:checked + label:after {
-    color: $gold;
-  }
 }
 
 // sidebar

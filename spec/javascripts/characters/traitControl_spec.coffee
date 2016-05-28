@@ -8,6 +8,7 @@ describe 'the traitControl directive', ->
       expect(@innerScope.trait).toEqualData(@scope.trait)
       expect(@innerScope.readOnly).toEqualData(@scope.readOnly)
       expect(@innerScope.selectable).toEqualData(@scope.selectable)
+      expect(@innerScope.checked).toEqualData(@scope.checked)
 
   commonTests = ()->
     it 'should create two children', ->
@@ -68,13 +69,14 @@ describe 'the traitControl directive', ->
     @createDirective = ()->
       @directiveElem = @getCompiledElement('trait-control',
         'trait-name="traitName" max="max" read-only="readOnly" trait="trait"
-        selectable="selectable"')
+        selectable="selectable" checked="checked"')
 
       @innerScope = @directiveElem.isolateScope()
 
   describe 'an unselectable traitControl', ->
     beforeEach ->
       @scope.selectable = false
+      @scope.checked = false
       @createDirective()
 
     commonTests()
@@ -89,27 +91,44 @@ describe 'the traitControl directive', ->
   describe 'a selectable traitControl', ->
     beforeEach ->
       @scope.selectable = true
-      @createDirective()
 
-    commonTests()
+    selectableTests = ()->
+      describe 'the checkbox div', ->
+        beforeEach ->
+          @checkboxDiv = @directiveElem.find('> .checkbox.checkbox-inline')
 
-    describe 'the checkbox div', ->
+        describe 'the checkbox element', ->
+          beforeEach ->
+            @checkboxElem = @checkboxDiv.find('input[type="checkbox"]')
+
+          it 'should have the right id', ->
+            expect(@checkboxElem).toHaveAttr('id', 'Trait-checkbox')
+
+          it 'should model the checked variable', ->
+            expect(@checkboxElem.prop('checked')).toEqualData(@scope.checked)
+
+        describe 'the label', ->
+          beforeEach ->
+            @labelElem = @checkboxDiv.find('label')
+
+          it 'should be for the checkbox', ->
+            expect(@labelElem).toHaveAttr('for', 'Trait-checkbox')
+
+          it 'should show the trait name', ->
+            expect(@labelElem).toHaveText('Trait')
+
+    describe 'that is unchecked', ->
       beforeEach ->
-        @checkboxDiv = @directiveElem.find('> .checkbox.checkbox-inline')
+        @scope.checked = false
+        @createDirective()
 
-      describe 'the checkbox element', ->
-        beforeEach ->
-          @checkboxElem = @checkboxDiv.find('input[type="checkbox"]')
+      commonTests()
+      selectableTests()
 
-        it 'should have the right id', ->
-          expect(@checkboxElem).toHaveAttr('id', 'Trait-checkbox')
+    describe 'that is checked', ->
+      beforeEach ->
+        @scope.checked = true
+        @createDirective()
 
-      describe 'the label', ->
-        beforeEach ->
-          @labelElem = @checkboxDiv.find('label')
-
-        it 'should be for the checkbox', ->
-          expect(@labelElem).toHaveAttr('for', 'Trait-checkbox')
-
-        it 'should show the trait name', ->
-          expect(@labelElem).toHaveText('Trait')
+      commonTests()
+      selectableTests()

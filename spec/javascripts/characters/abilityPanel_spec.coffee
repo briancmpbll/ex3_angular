@@ -53,14 +53,14 @@ describe 'the abilityPanel directive', ->
         rowElem = @panelBody.find("trait-control:contains(#{ability})")
         traitControl = rowElem.find('span')
         expect(traitControl.attr('aria-valuenow')).toEqual(
-          @scope.character['abilities'][id].toString())
+          @scope.character.abilities[id].value.toString())
 
         expect(rowElem).toHaveClass('caste-ability') if @innerScope.
           isCasteAbility(id)
 
   describe 'changing the inner scope', ->
     beforeEach ->
-      @innerScope.character['abilities']['1'] = 3
+      @innerScope.character.abilities['1'] = 3
 
     it 'should change the outer scope', ->
-      expect(@scope.character['abilities']['1']).toEqual(3)
+      expect(@scope.character.abilities['1']).toEqual(3)

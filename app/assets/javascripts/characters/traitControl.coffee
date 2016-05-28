@@ -11,3 +11,4 @@ app.directive 'traitControl', ->
     trait: '='
     readOnly: '='
     selectable: '='
+    checked: '='

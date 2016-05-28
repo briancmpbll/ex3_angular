@@ -10,7 +10,8 @@ FactoryGirl.define do
 
     after(:create) do |character|
       create_list(:character_attribute, 9, character: character)
-      create_list(:character_ability, 10, character: character)
+      create_list(:character_ability, 5, character: character)
+      create_list(:favored_character_ability, 5, character: character)
     end
   end
 end
