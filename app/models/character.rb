@@ -5,6 +5,9 @@ class Character < ActiveRecord::Base
   belongs_to :caste
   has_one :character_type, through: :caste
 
+  belongs_to :supernal_ability, class_name: 'Ability',
+                                foreign_key: :supernal_ability_id
+
   has_many :character_abilities, dependent: :destroy
   has_many :character_attributes, dependent: :destroy
 

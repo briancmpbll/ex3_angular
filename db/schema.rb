@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160527012602) do
+ActiveRecord::Schema.define(version: 20160708043256) do
 
   create_table "abilities", force: :cascade do |t|
     t.string   "name",       null: false
@@ -103,15 +103,16 @@ ActiveRecord::Schema.define(version: 20160527012602) do
   add_index "character_types", ["name"], name: "index_character_types_on_name", unique: true
 
   create_table "characters", force: :cascade do |t|
-    t.string   "name",       null: false
+    t.string   "name",                null: false
     t.string   "concept"
-    t.integer  "caste_id",   null: false
+    t.integer  "caste_id",            null: false
     t.integer  "willpower"
     t.integer  "essence"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
     t.string   "player"
     t.string   "anima"
+    t.integer  "supernal_ability_id"
   end
 
   add_index "characters", ["caste_id"], name: "index_characters_on_caste_id"

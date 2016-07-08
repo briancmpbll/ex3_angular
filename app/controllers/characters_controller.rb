@@ -15,6 +15,7 @@ class CharactersController < ApplicationController
 
   def set_character
     @character = Character.includes(:caste,
+                                    :supernal_ability,
                                     character_abilities: [:ability],
                                     character_attributes: [:attribute_data])
                           .find(params[:id])

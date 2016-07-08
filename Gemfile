@@ -22,7 +22,7 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 4.6.0'
   gem 'capybara', '~> 2.6.2'
   gem 'database_cleaner', '~> 1.5.1'
-  gem 'selenium-webdriver', '~> 2.52.0'
+  gem 'selenium-webdriver', '~> 2.53.0'
   gem 'shoulda-matchers', '~> 3.1.1'
   gem 'teaspoon-jasmine', '~> 2.3.4'
   gem 'phantomjs', '~> 2.1.1.0'
