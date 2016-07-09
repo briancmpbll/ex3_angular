@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160708043256) do
+ActiveRecord::Schema.define(version: 20160709031716) do
 
   create_table "abilities", force: :cascade do |t|
     t.string   "name",       null: false
@@ -116,6 +116,15 @@ ActiveRecord::Schema.define(version: 20160708043256) do
   end
 
   add_index "characters", ["caste_id"], name: "index_characters_on_caste_id"
+
+  create_table "specialties", force: :cascade do |t|
+    t.string   "description",          null: false
+    t.integer  "character_ability_id", null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "specialties", ["character_ability_id"], name: "index_specialties_on_character_ability_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
