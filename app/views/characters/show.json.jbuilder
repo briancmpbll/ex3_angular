@@ -14,3 +14,6 @@ json.abilities do
     end
   end
 end
+
+json.supernal_ability @character.supernal_ability.id if
+  @character.supernal_ability

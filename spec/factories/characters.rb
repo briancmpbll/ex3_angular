@@ -7,6 +7,7 @@ FactoryGirl.define do
     essence { rand(1..5) }
     player 'George'
     anima 'Sick light show'
+    association :supernal_ability, factory: :ability
 
     after(:create) do |character|
       create_list(:character_attribute, 9, character: character)

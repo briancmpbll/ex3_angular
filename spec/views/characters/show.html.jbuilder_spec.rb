@@ -41,4 +41,8 @@ RSpec.describe 'characters/show.json.jbuilder', type: :view do
       expect(result_value).to eq(character_attribute.value)
     end
   end
+
+  it 'should include the supernal ability' do
+    expect(results['supernal_ability']).to eq(object.supernal_ability.id)
+  end
 end
