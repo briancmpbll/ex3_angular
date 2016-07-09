@@ -15,6 +15,5 @@ json.abilities do
   end
 end
 
-if @character.supernal_ability
-  json.supernal_ability @character.supernal_ability.id
-end
+json.supernal_ability @character.supernal_ability.id if
+  @character.supernal_ability

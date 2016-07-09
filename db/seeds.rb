@@ -43,6 +43,11 @@ survival      = Ability.create(name: 'Survival')
 thrown        = Ability.create(name: 'Thrown')
 war           = Ability.create(name: 'War')
 
+abilities = [archery, athletics, awareness, brawl, bureacracy, craft, dodge,
+             integrity, investigation, larceny, linguistics, lore,
+             martial_arts, medicine, melee, occult, performance, presence,
+             resistence, ride, sail, socialize, stealth, survival, thrown, war]
+
 solar = CharacterType.create(name: 'Solar Exalt')
 
 dawn = Caste.create(
@@ -207,7 +212,8 @@ if %w(development test).include?(Rails.env.downcase)
         willpower: rand(1..10),
         essence: rand(1..5),
         player: Faker::Name.name,
-        anima: 'Really sweet effect'
+        anima: 'Really sweet effect',
+        supernal_ability: abilities.sample
       )
 
       Attribute.all.each do |attribute|
