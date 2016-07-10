@@ -12,6 +12,8 @@ RSpec.describe 'character_types/index.json.jbuilder', type: :view do
 
   include_context 'parse JSON'
 
+  it { is_expected.to render_template(partial: 'castes/_list') }
+
   it 'should have the right number of character types' do
     expect(results.length).to eq(character_types.length)
   end

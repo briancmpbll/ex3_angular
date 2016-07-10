@@ -6,17 +6,9 @@ json.attributes do
   end
 end
 
-json.abilities do
-  @character.character_abilities.each do |character_ability|
-    json.set! character_ability.ability.id do
-      json.value character_ability.value
-      json.favored character_ability.favored
-
-      unless character_ability.specialties.empty?
-        json.specialties character_ability.specialties.collect(&:description)
-      end
-    end
-  end
+json.set! 'abilities' do
+  json.partial! 'character_abilities/list',
+                character_abilities: @character.character_abilities
 end
 
 json.supernal_ability @character.supernal_ability.id if
