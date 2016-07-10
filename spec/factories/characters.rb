@@ -11,8 +11,14 @@ FactoryGirl.define do
 
     after(:create) do |character|
       create_list(:character_attribute, 9, character: character)
-      create_list(:character_ability, 5, character: character)
-      create_list(:favored_character_ability, 5, character: character)
+
+      5.times do
+        create(:character_ability, character: character,
+                                   specialty_count: rand(3))
+        create(:character_ability, character: character,
+                                   favored: true,
+                                   specialty_count: rand(3))
+      end
     end
   end
 end

@@ -225,12 +225,19 @@ if %w(development test).include?(Rails.env.downcase)
       end
 
       Ability.all.each do |ability|
-        CharacterAbility.create(
+        character_ability = CharacterAbility.create(
           character: character,
           ability: ability,
           value: rand(0..5),
           favored: rand(1..5) % 5 == 0
         )
+
+        rand(3).times do |n|
+          Specialty.create(
+            character_ability: character_ability,
+            description: "#{ability.name} #{n}"
+          )
+        end
       end
     end
   end

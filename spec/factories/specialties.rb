@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :specialty do
-    description 'Being cool'
+    sequence(:description) { |i| "Specialty#{i}" }
     association :character_ability
   end
 end

@@ -31,6 +31,13 @@ RSpec.describe 'characters/show.json.jbuilder', type: :view do
     end
   end
 
+  it 'should include the right specialties' do
+    object.character_abilities.each do |character_ability|
+      specialties = abilities[character_ability.ability.id.to_s]['specialties']
+      expect(specialties).to have_specialties(character_ability.specialties)
+    end
+  end
+
   it 'should include the right number of attributes' do
     expect(attributes.length).to eq(object.character_attributes.length)
   end
