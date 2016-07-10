@@ -36,3 +36,20 @@ RSpec::Matchers.define :have_character_links do |expected|
     true
   end
 end
+
+RSpec::Matchers.define :have_specialties do |expected|
+  match do |actual|
+    return true if actual.nil? && expected.empty?
+    return false unless actual && expected &&
+                        actual.size == expected.size
+    expected.each do |exp_specialty|
+      has_specialty = false
+      actual.each do |act_specialty|
+        has_specialty = true if exp_specialty.description == act_specialty
+      end
+
+      return false unless has_specialty
+    end
+    true
+  end
+end
