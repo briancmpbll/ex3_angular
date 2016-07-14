@@ -9,4 +9,6 @@ RSpec.describe Merit, type: :model do
   it_should_behave_like 'a uniquely named model'
 
   it { is_expected.to respond_to(:name, :valid_values) }
+
+  it { is_expected.to validate_presence_of :valid_values }
 end
