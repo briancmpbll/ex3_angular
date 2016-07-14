@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160709031716) do
+ActiveRecord::Schema.define(version: 20160711012230) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "abilities", force: :cascade do |t|
     t.string   "name",       null: false
@@ -19,16 +22,16 @@ ActiveRecord::Schema.define(version: 20160709031716) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "abilities", ["name"], name: "index_abilities_on_name", unique: true
+  add_index "abilities", ["name"], name: "index_abilities_on_name", unique: true, using: :btree
 
   create_table "abilities_castes", id: false, force: :cascade do |t|
     t.integer "ability_id", null: false
     t.integer "caste_id",   null: false
   end
 
-  add_index "abilities_castes", ["ability_id", "caste_id"], name: "index_abilities_castes_on_ability_id_and_caste_id", unique: true
-  add_index "abilities_castes", ["ability_id"], name: "index_abilities_castes_on_ability_id"
-  add_index "abilities_castes", ["caste_id"], name: "index_abilities_castes_on_caste_id"
+  add_index "abilities_castes", ["ability_id", "caste_id"], name: "index_abilities_castes_on_ability_id_and_caste_id", unique: true, using: :btree
+  add_index "abilities_castes", ["ability_id"], name: "index_abilities_castes_on_ability_id", using: :btree
+  add_index "abilities_castes", ["caste_id"], name: "index_abilities_castes_on_caste_id", using: :btree
 
   create_table "anima_effects", force: :cascade do |t|
     t.string   "condition",  null: false
@@ -39,7 +42,7 @@ ActiveRecord::Schema.define(version: 20160709031716) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "anima_effects", ["owner_type", "owner_id"], name: "index_anima_effects_on_owner_type_and_owner_id"
+  add_index "anima_effects", ["owner_type", "owner_id"], name: "index_anima_effects_on_owner_type_and_owner_id", using: :btree
 
   create_table "attribute_categories", force: :cascade do |t|
     t.string   "name",       null: false
@@ -47,7 +50,7 @@ ActiveRecord::Schema.define(version: 20160709031716) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "attribute_categories", ["name"], name: "index_attribute_categories_on_name", unique: true
+  add_index "attribute_categories", ["name"], name: "index_attribute_categories_on_name", unique: true, using: :btree
 
   create_table "attributes", force: :cascade do |t|
     t.string   "name",                  null: false
@@ -56,8 +59,8 @@ ActiveRecord::Schema.define(version: 20160709031716) do
     t.datetime "updated_at",            null: false
   end
 
-  add_index "attributes", ["attribute_category_id"], name: "index_attributes_on_attribute_category_id"
-  add_index "attributes", ["name"], name: "index_attributes_on_name", unique: true
+  add_index "attributes", ["attribute_category_id"], name: "index_attributes_on_attribute_category_id", using: :btree
+  add_index "attributes", ["name"], name: "index_attributes_on_name", unique: true, using: :btree
 
   create_table "castes", force: :cascade do |t|
     t.string   "name",              null: false
@@ -66,8 +69,8 @@ ActiveRecord::Schema.define(version: 20160709031716) do
     t.datetime "updated_at",        null: false
   end
 
-  add_index "castes", ["character_type_id"], name: "index_castes_on_character_type_id"
-  add_index "castes", ["name"], name: "index_castes_on_name", unique: true
+  add_index "castes", ["character_type_id"], name: "index_castes_on_character_type_id", using: :btree
+  add_index "castes", ["name"], name: "index_castes_on_name", unique: true, using: :btree
 
   create_table "character_abilities", force: :cascade do |t|
     t.integer  "character_id",                 null: false
@@ -78,9 +81,9 @@ ActiveRecord::Schema.define(version: 20160709031716) do
     t.boolean  "favored",      default: false, null: false
   end
 
-  add_index "character_abilities", ["ability_id"], name: "index_character_abilities_on_ability_id"
-  add_index "character_abilities", ["character_id", "ability_id"], name: "index_character_abilities_on_character_id_and_ability_id", unique: true
-  add_index "character_abilities", ["character_id"], name: "index_character_abilities_on_character_id"
+  add_index "character_abilities", ["ability_id"], name: "index_character_abilities_on_ability_id", using: :btree
+  add_index "character_abilities", ["character_id", "ability_id"], name: "index_character_abilities_on_character_id_and_ability_id", unique: true, using: :btree
+  add_index "character_abilities", ["character_id"], name: "index_character_abilities_on_character_id", using: :btree
 
   create_table "character_attributes", force: :cascade do |t|
     t.integer  "character_id", null: false
@@ -90,9 +93,9 @@ ActiveRecord::Schema.define(version: 20160709031716) do
     t.datetime "updated_at",   null: false
   end
 
-  add_index "character_attributes", ["attribute_id"], name: "index_character_attributes_on_attribute_id"
-  add_index "character_attributes", ["character_id", "attribute_id"], name: "index_character_attributes_on_character_id_and_attribute_id", unique: true
-  add_index "character_attributes", ["character_id"], name: "index_character_attributes_on_character_id"
+  add_index "character_attributes", ["attribute_id"], name: "index_character_attributes_on_attribute_id", using: :btree
+  add_index "character_attributes", ["character_id", "attribute_id"], name: "index_character_attributes_on_character_id_and_attribute_id", unique: true, using: :btree
+  add_index "character_attributes", ["character_id"], name: "index_character_attributes_on_character_id", using: :btree
 
   create_table "character_types", force: :cascade do |t|
     t.string   "name",       null: false
@@ -100,7 +103,7 @@ ActiveRecord::Schema.define(version: 20160709031716) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "character_types", ["name"], name: "index_character_types_on_name", unique: true
+  add_index "character_types", ["name"], name: "index_character_types_on_name", unique: true, using: :btree
 
   create_table "characters", force: :cascade do |t|
     t.string   "name",                null: false
@@ -115,7 +118,16 @@ ActiveRecord::Schema.define(version: 20160709031716) do
     t.integer  "supernal_ability_id"
   end
 
-  add_index "characters", ["caste_id"], name: "index_characters_on_caste_id"
+  add_index "characters", ["caste_id"], name: "index_characters_on_caste_id", using: :btree
+
+  create_table "merits", force: :cascade do |t|
+    t.string   "name",         null: false
+    t.integer  "valid_values", null: false, array: true
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "merits", ["name"], name: "index_merits_on_name", unique: true, using: :btree
 
   create_table "specialties", force: :cascade do |t|
     t.string   "description",          null: false
@@ -124,7 +136,7 @@ ActiveRecord::Schema.define(version: 20160709031716) do
     t.datetime "updated_at",           null: false
   end
 
-  add_index "specialties", ["character_ability_id"], name: "index_specialties_on_character_ability_id"
+  add_index "specialties", ["character_ability_id"], name: "index_specialties_on_character_ability_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -142,8 +154,8 @@ ActiveRecord::Schema.define(version: 20160709031716) do
     t.string   "username"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  add_index "users", ["username"], name: "index_users_on_username", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
 end
