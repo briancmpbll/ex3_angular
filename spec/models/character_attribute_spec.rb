@@ -13,6 +13,7 @@ RSpec.describe CharacterAttribute, type: :model do
 
   it { is_expected.to validate_presence_of :character }
   it { is_expected.to validate_presence_of :attribute_data }
+  it { is_expected.to validate_presence_of :value }
 
   it { is_expected.to validate_inclusion_of(:value).in_range(0..5) }
 

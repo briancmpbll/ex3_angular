@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160711012230) do
+ActiveRecord::Schema.define(version: 20160730051108) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,6 +97,18 @@ ActiveRecord::Schema.define(version: 20160711012230) do
   add_index "character_attributes", ["character_id", "attribute_id"], name: "index_character_attributes_on_character_id_and_attribute_id", unique: true, using: :btree
   add_index "character_attributes", ["character_id"], name: "index_character_attributes_on_character_id", using: :btree
 
+  create_table "character_merits", force: :cascade do |t|
+    t.integer  "character_id", null: false
+    t.integer  "merit_id",     null: false
+    t.integer  "value",        null: false
+    t.string   "description"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "character_merits", ["character_id"], name: "index_character_merits_on_character_id", using: :btree
+  add_index "character_merits", ["merit_id"], name: "index_character_merits_on_merit_id", using: :btree
+
   create_table "character_types", force: :cascade do |t|
     t.string   "name",       null: false
     t.datetime "created_at", null: false
@@ -125,6 +137,7 @@ ActiveRecord::Schema.define(version: 20160711012230) do
     t.integer  "valid_values", null: false, array: true
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.boolean  "repeatable",   null: false
   end
 
   add_index "merits", ["name"], name: "index_merits_on_name", unique: true, using: :btree
@@ -158,4 +171,6 @@ ActiveRecord::Schema.define(version: 20160711012230) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
+  add_foreign_key "character_merits", "characters"
+  add_foreign_key "character_merits", "merits"
 end

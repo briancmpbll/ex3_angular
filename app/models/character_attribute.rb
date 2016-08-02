@@ -6,6 +6,7 @@ class CharacterAttribute < ActiveRecord::Base
 
   validates_presence_of :character
   validates_presence_of :attribute_data
+  validates_presence_of :value
 
   validates_uniqueness_of :attribute_data, scope: :character_id
   validates_uniqueness_of :character, scope: :attribute_id

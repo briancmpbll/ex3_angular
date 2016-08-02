@@ -7,6 +7,7 @@ class CharacterAbility < ActiveRecord::Base
 
   validates_presence_of :character
   validates_presence_of :ability
+  validates_presence_of :value
 
   validates_uniqueness_of :ability, scope: :character_id
   validates_uniqueness_of :character, scope: :ability_id
